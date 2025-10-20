@@ -51,21 +51,21 @@
                 title: "Data science with Microsoft certification",
                 date: "2020",
                 type: "folder",
-                link: "cert1/",
-                files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"] // Your renamed files
+                link: "cert1/index.html",
+                files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"]
             },
             {
                 title: "MATLAB", 
                 date: "2020",
                 type: "folder",
-                link: "cert2/",
+                link: "cert2/index.html",
                 files: ["cert2a.pdf", "cert2b.pdf"]
             },
             {
                 title: "Research Paper",
                 date: "2021-2022",
                 type: "folder",
-                link: "cert3/",
+                link: "cert3/index.html",
                 files: ["cert3a.pdf", "cert3b.pdf", "cert3c.pdf", "cert3d.jpg"]
             },
             {
@@ -128,12 +128,12 @@
         certificates.forEach(cert => {
             const card = document.createElement('div');
             card.className = 'cert-card';
-            let imgSrc = cert.type === 'folder' ? `${cert.link}cert${cert.link.slice(5,6)}d.jpg` : 'https://via.placeholder.com/300x200?text=PDF'; // Try JPG for cert3, fallback for others
+            let imgSrc = cert.type === 'folder' ? `${cert.link.replace('index.html', '')}cert${cert.link.slice(5,6)}d.jpg` : 'https://via.placeholder.com/300x200?text=PDF';
             let buttonHTML = cert.type === 'folder' ? 
                 `<a href="${cert.link}" class="folder-btn">📁 Open Folder</a>` : 
                 `<a href="${cert.file}" class="download-btn" download>📥 Download PDF</a>`;
             let fileListHTML = cert.type === 'folder' ? 
-                `<div class="file-list">Files: ${cert.files.map(f => `<a href="${cert.link}${f}" download>${f}</a>`).join(', ')}</div>` : '';
+                `<div class="file-list">Files: ${cert.files.map(f => `<a href="${cert.link.replace('index.html', '')}${f}" download>${f}</a>`).join(', ')}</div>` : '';
             card.innerHTML = `
                 <img src="${imgSrc}" alt="${cert.title}" onerror="this.src='https://via.placeholder.com/300x200?text=FOLDER';">
                 <div class="cert-info">
