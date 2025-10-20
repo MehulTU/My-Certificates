@@ -22,6 +22,9 @@
         .folder-btn:hover { background: #c0392b; }
         .download-btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; }
         .download-btn:hover { background: #2980b9; }
+        .file-list { margin-top: 10px; font-size: 0.9em; }
+        .file-list a { color: #3498db; text-decoration: none; }
+        .file-list a:hover { text-decoration: underline; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
         @media (max-width: 768px) { h1 { font-size: 2em; } .cert-grid { grid-template-columns: 1fr; } }
     </style>
@@ -43,25 +46,27 @@
     </footer>
 
     <script>
-        // Your certificates with folders for first 3
         const certificates = [
             {
                 title: "Data science with Microsoft certification",
                 date: "2020",
                 type: "folder",
-                link: "cert1/"
+                link: "cert1/",
+                files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"] // Your renamed files
             },
             {
                 title: "MATLAB", 
                 date: "2020",
                 type: "folder",
-                link: "cert2/"
+                link: "cert2/",
+                files: ["cert2a.pdf", "cert2b.pdf"]
             },
             {
                 title: "Research Paper",
                 date: "2021-2022",
                 type: "folder",
-                link: "cert3/"
+                link: "cert3/",
+                files: ["cert3a.pdf", "cert3b.pdf", "cert3c.pdf", "cert3d.jpg"]
             },
             {
                 title: "Environmental quize certificate",
@@ -119,21 +124,23 @@
             }
         ];
 
-        // Load certificates
         const certGrid = document.getElementById('certGrid');
         certificates.forEach(cert => {
             const card = document.createElement('div');
             card.className = 'cert-card';
-            let imgSrc = cert.type === 'folder' ? 'https://via.placeholder.com/300x200?text=FOLDER' : 'https://via.placeholder.com/300x200?text=PDF';
+            let imgSrc = cert.type === 'folder' ? `${cert.link}cert${cert.link.slice(5,6)}d.jpg` : 'https://via.placeholder.com/300x200?text=PDF'; // Try JPG for cert3, fallback for others
             let buttonHTML = cert.type === 'folder' ? 
                 `<a href="${cert.link}" class="folder-btn">📁 Open Folder</a>` : 
                 `<a href="${cert.file}" class="download-btn" download>📥 Download PDF</a>`;
+            let fileListHTML = cert.type === 'folder' ? 
+                `<div class="file-list">Files: ${cert.files.map(f => `<a href="${cert.link}${f}" download>${f}</a>`).join(', ')}</div>` : '';
             card.innerHTML = `
-                <img src="${imgSrc}" alt="${cert.title}">
+                <img src="${imgSrc}" alt="${cert.title}" onerror="this.src='https://via.placeholder.com/300x200?text=FOLDER';">
                 <div class="cert-info">
                     <div class="cert-title">${cert.title}</div>
                     <div class="cert-date">Issued: ${cert.date}</div>
                     ${buttonHTML}
+                    ${fileListHTML}
                 </div>
             `;
             certGrid.appendChild(card);
