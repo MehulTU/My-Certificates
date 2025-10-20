@@ -52,75 +52,88 @@
                 date: "2020",
                 type: "folder",
                 link: "cert1/index.html",
-                files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"]
+                files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"],
+                thumbnail: "cert1/cert1a-thumb.jpg" // Use first thumb as folder preview
             },
             {
                 title: "MATLAB", 
                 date: "2020",
                 type: "folder",
                 link: "cert2/index.html",
-                files: ["cert2a.pdf", "cert2b.pdf"]
+                files: ["cert2a.pdf", "cert2b.pdf"],
+                thumbnail: "cert2/cert2a-thumb.jpg"
             },
             {
                 title: "Research Paper",
                 date: "2021-2022",
                 type: "folder",
                 link: "cert3/index.html",
-                files: ["cert3a.pdf", "cert3b.pdf", "cert3c.pdf", "cert3d.jpg"]
+                files: ["cert3a.pdf", "cert3b.pdf", "cert3c.pdf", "cert3d.jpg"],
+                thumbnail: "cert3/cert3d-thumb.jpg" // Use JPG thumb
             },
             {
                 title: "Environmental quize certificate",
                 date: "2020",
                 type: "pdf",
-                file: "cert4.pdf"
+                file: "cert4.pdf",
+                thumbnail: "cert4-thumb.jpg"
             },
+            // Add thumbnails for others
             {
                 title: "ETG internship(FEA_CFD)",
                 date: "2021",
                 type: "pdf",
-                file: "cert5.pdf"
+                file: "cert5.pdf",
+                thumbnail: "cert5-thumb.jpg"
             },
             {
                 title: "EV- ETG internship (Electric vehicle)",
                 date: "2021",
                 type: "pdf",
-                file: "cert6.pdf"
+                file: "cert6.pdf",
+                thumbnail: "cert6-thumb.jpg"
             },
             {
                 title: "Global collaboration Car design_Certificate 2023 ADP",
                 date: "2023",
                 type: "pdf",
-                file: "cert7.pdf"
+                file: "cert7.pdf",
+                thumbnail: "cert7-thumb.jpg"
             },
             {
                 title: "Management and campus leader",
                 date: "2021-2022",
                 type: "pdf",
-                file: "cert8.pdf"
+                file: "cert8.pdf",
+                thumbnail: "cert8-thumb.jpg"
             },
             {
                 title: "Python and machine learning internship",
                 date: "2020",
                 type: "pdf",
-                file: "cert9.pdf"
+                file: "cert9.pdf",
+                thumbnail: "cert9-thumb.jpg"
             },
             {
                 title: "Python Programming (MTA) – Microsoft Certified",
                 date: "2020",
                 type: "pdf",
-                file: "cert10.pdf"
+                file: "cert10.pdf",
+                thumbnail: "cert10-thumb.jpg"
             },
             {
                 title: "Shape UI_ Python (workshop)",
                 date: "2020",
                 type: "pdf",
-                file: "cert11.pdf"
+                file: "cert11.pdf",
+                thumbnail: "cert11-thumb.jpg"
             },
             {
                 title: "Tata bearing",
                 date: "2020",
                 type: "pdf",
-                file: "cert12.pdf"
+                file: "cert12.pdf",
+                thumbnail: "cert12-thumb.jpg"
             }
         ];
 
@@ -128,14 +141,14 @@
         certificates.forEach(cert => {
             const card = document.createElement('div');
             card.className = 'cert-card';
-            let imgSrc = cert.type === 'folder' ? `${cert.link.replace('index.html', '')}cert${cert.link.slice(5,6)}d.jpg` : 'https://via.placeholder.com/300x200?text=PDF';
+            let imgSrc = cert.thumbnail || (cert.type === 'folder' ? 'https://via.placeholder.com/300x200?text=FOLDER' : 'https://via.placeholder.com/300x200?text=PDF');
             let buttonHTML = cert.type === 'folder' ? 
                 `<a href="${cert.link}" class="folder-btn">📁 Open Folder</a>` : 
                 `<a href="${cert.file}" class="download-btn" download>📥 Download PDF</a>`;
             let fileListHTML = cert.type === 'folder' ? 
                 `<div class="file-list">Files: ${cert.files.map(f => `<a href="${cert.link.replace('index.html', '')}${f}" download>${f}</a>`).join(', ')}</div>` : '';
             card.innerHTML = `
-                <img src="${imgSrc}" alt="${cert.title}" onerror="this.src='https://via.placeholder.com/300x200?text=FOLDER';">
+                <img src="${imgSrc}" alt="${cert.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
                 <div class="cert-info">
                     <div class="cert-title">${cert.title}</div>
                     <div class="cert-date">Issued: ${cert.date}</div>
