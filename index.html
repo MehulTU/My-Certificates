@@ -83,17 +83,17 @@
     </button>
 
     <script>
-        // Error handling for scripts
+        // Optimize Particles.js with fewer particles
         try {
             particlesJS('particles-js', {
                 particles: {
-                    number: { value: 60, density: { enable: true, value_area: 800 } },
+                    number: { value: 30, density: { enable: true, value_area: 800 } }, // Reduced from 60
                     color: { value: '#ffd700' },
                     shape: { type: 'circle' },
                     opacity: { value: 0.4, random: true },
-                    size: { value: 4, random: true },
+                    size: { value: 3, random: true },
                     line_linked: { enable: false },
-                    move: { enable: true, speed: 1.2, direction: 'none', random: true }
+                    move: { enable: true, speed: 1.0, direction: 'none', random: true }
                 },
                 interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' } } }
             });
@@ -102,14 +102,16 @@
             console.error('Particles.js error:', e);
         }
 
-        // Extended timeout for preloader
-        setTimeout(() => {
+        // Dynamic preloader hide on full load
+        window.onload = function() {
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 preloader.classList.add('hidden');
-                console.log('Preloader hidden');
+                console.log('Preloader hidden on full load');
+                // Force browser to stop loading spinner
+                document.readyState = 'complete';
             }
-        }, 3000); // Increased to 3 seconds
+        };
 
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
@@ -121,13 +123,16 @@
             }
         });
 
-        // Typed.js with error handling
+        // Optimize Typed.js with slower loop
         try {
             new Typed('#typed', {
                 strings: ['Aerospace Engineer', 'Mechatronics Expert', 'CAD Designer', 'Innovator'],
-                typeSpeed: 60,
-                backSpeed: 40,
-                loop: true
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true,
+                loopCount: Infinity,
+                showCursor: true,
+                cursorChar: '|'
             });
             console.log('Typed.js loaded successfully');
         } catch (e) {
@@ -135,7 +140,7 @@
             document.getElementById('typed').textContent = 'Aerospace Engineer'; // Fallback
         }
 
-        // Certificate generation with error handling
+        // Certificate generation
         try {
             const certificates = [
                 {
@@ -251,6 +256,11 @@
                     console.log(`Generated card for ${cert.title}`);
                 });
                 console.log('All certificates generated successfully');
+                // Mark page as loaded after content generation
+                if (document.readyState !== 'complete') {
+                    document.readyState = 'complete';
+                    console.log('Page marked as fully loaded');
+                }
             } else {
                 console.error('certGrid element not found');
             }
