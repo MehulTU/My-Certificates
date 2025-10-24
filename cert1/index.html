@@ -2,17 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cert 1 Files</title>
+    <title>Cert 1 Files - Data Science Certifications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        a { display: block; margin: 10px 0; color: #3498db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: #1a1a2e; color: #fff; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h2 { color: #ffd700; font-size: 2.5em; font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 40px; }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .file-card { background: #16213e; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; }
+        .file-card:hover { transform: translateY(-8px); }
+        .file-icon { font-size: 4em; color: #3498db; margin-bottom: 15px; }
+        .file-link { color: #ffd700; text-decoration: none; font-size: 1.1em; font-weight: 500; }
+        .file-link:hover { color: #e67e22; }
+        #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
     </style>
 </head>
 <body>
-    <h2>Data Science Certifications</h2>
-    <a href="cert1a.pdf" download>cert1a.pdf</a>
-    <a href="cert1b.pdf" download>cert1b.pdf</a>
-    <a href="cert1c.pdf" download>cert1c.pdf</a>
+    <div id="particles-js"></div>
+    <div class="container">
+        <h2>Data Science Certifications</h2>
+        <div class="file-grid">
+            <div class="file-card"><a href="./cert1a.pdf" download class="file-link"><i class="fas fa-file-pdf file-icon"></i>cert1a.pdf</a></div>
+            <div class="file-card"><a href="./cert1b.pdf" download class="file-link"><i class="fas fa-file-pdf file-icon"></i>cert1b.pdf</a></div>
+            <div class="file-card"><a href="./cert1c.pdf" download class="file-link"><i class="fas fa-file-pdf file-icon"></i>cert1c.pdf</a></div>
+        </div>
+    </div>
+    <script>
+        particlesJS('particles-js', {
+            particles: { number: { value: 50, density: { enable: true, value_area: 800 } }, color: { value: '#ffd700' }, shape: { type: 'circle' }, opacity: { value: 0.3, random: true }, size: { value: 3, random: true }, line_linked: { enable: false }, move: { enable: true, speed: 1, direction: 'none', random: true } },
+            interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' } } }
+        });
+    </script>
 </body>
 </html>
