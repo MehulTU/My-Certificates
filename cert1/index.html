@@ -35,9 +35,9 @@
         });
 
         const files = [
-            { title: "cert1a.pdf", file: "cert1a.pdf", thumbnail: "certi1a-thumb.png" },
-            { title: "cert1b.pdf", file: "cert1b.pdf", thumbnail: "certi1b-thumb.png" },
-            { title: "cert1c.pdf", file: "cert1c.pdf", thumbnail: "certi1c-thumb.png" }
+            { title: "cert1a.pdf", file: "cert1a.pdf", thumbnail: "https://mehultu.github.io/My-Certificates/cert1/certi1a-thumb.png" },
+            { title: "cert1b.pdf", file: "cert1b.pdf", thumbnail: "https://mehultu.github.io/My-Certificates/cert1/certi1b-thumb.png" },
+            { title: "cert1c.pdf", file: "cert1c.pdf", thumbnail: "https://mehultu.github.io/My-Certificates/cert1/certi1c-thumb.png" }
         ];
 
         const fileGrid = document.getElementById('fileGrid');
@@ -46,7 +46,7 @@
             card.className = 'file-card';
             let imgSrc = file.thumbnail || 'https://via.placeholder.com/300x200?text=PDF';
             card.innerHTML = `
-                <img src="${imgSrc}" alt="${file.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
+                <img src="${imgSrc}" alt="${file.title}" onerror="console.log('Thumbnail load failed for ${file.title}: ${imgSrc}'); this.src='https://via.placeholder.com/300x200?text=Preview';">
                 <div class="file-info">
                     <div class="file-title">${file.title}</div>
                     <a href="${file.file}" class="file-link" download>📥 Download</a>
