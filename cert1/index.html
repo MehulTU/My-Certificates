@@ -10,11 +10,13 @@
         body { margin: 0; font-family: 'Poppins', sans-serif; background: #1a1a2e; color: #fff; overflow-x: hidden; }
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         h2 { color: #ffd700; font-size: 2.5em; font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 40px; }
-        .file-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .file-card { background: #16213e; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; }
         .file-card:hover { transform: translateY(-8px); }
         .file-icon { font-size: 4em; color: #3498db; margin-bottom: 15px; }
-        .file-link { color: #ffd700; text-decoration: none; font-size: 1.1em; font-weight: 500; }
+        .file-thumb { width: 300px; height: 200px; object-fit: cover; border-radius: 10px; transition: opacity 0.3s ease; }
+        .file-thumb:hover { opacity: 0.9; }
+        .file-link { color: #ffd700; text-decoration: none; font-size: 1.1em; font-weight: 500; display: block; margin-top: 10px; }
         .file-link:hover { color: #e67e22; }
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
     </style>
@@ -24,9 +26,24 @@
     <div class="container">
         <h2>Data Science Certifications</h2>
         <div class="file-grid">
-            <div class="file-card"><a href="./cert1a.pdf" download class="file-link"><i class="fas fa-file-pdf file-icon"></i>cert1a.pdf</a></div>
-            <div class="file-card"><a href="./cert1b.pdf" download class="file-link"><i class="fas fa-file-pdf file-icon"></i>cert1b.pdf</a></div>
-            <div class="file-card"><a href="./cert1c.pdf" download class="file-link"><i class="fas fa-file-pdf file-icon"></i>cert1c.pdf</a></div>
+            <div class="file-card">
+                <a href="./cert1a.pdf" download class="file-link">
+                    <img src="https://via.placeholder.com/300x200?text=Upload+certi1a-thumb" alt="Thumbnail for cert1a" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
+                    cert1a.pdf
+                </a>
+            </div>
+            <div class="file-card">
+                <a href="./cert1b.pdf" download class="file-link">
+                    <img src="https://via.placeholder.com/300x200?text=Upload+certi1b-thumb" alt="Thumbnail for cert1b" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
+                    cert1b.pdf
+                </a>
+            </div>
+            <div class="file-card">
+                <a href="./cert1c.pdf" download class="file-link">
+                    <img src="https://via.placeholder.com/300x200?text=Upload+certi1c-thumb" alt="Thumbnail for cert1c" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
+                    cert1c.pdf
+                </a>
+            </div>
         </div>
     </div>
     <script>
