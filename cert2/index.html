@@ -35,8 +35,8 @@
         });
 
         const files = [
-            { title: "cert2a.pdf", file: "cert2a.pdf", thumbnail: "certi2a-thumb.png" },
-            { title: "cert2b.pdf", file: "cert2b.pdf", thumbnail: "certi2b-thumb.png" }
+            { title: "cert2a.pdf", file: "cert2a.pdf", thumbnail: "https://mehultu.github.io/My-Certificates/cert2/cert2a-thumb.png" },
+            { title: "cert2b.pdf", file: "cert2b.pdf", thumbnail: "https://mehultu.github.io/My-Certificates/cert2/cert2b-thumb.png" }
         ];
 
         const fileGrid = document.getElementById('fileGrid');
@@ -45,7 +45,7 @@
             card.className = 'file-card';
             let imgSrc = file.thumbnail || 'https://via.placeholder.com/300x200?text=PDF';
             card.innerHTML = `
-                <img src="${imgSrc}" alt="${file.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
+                <img src="${imgSrc}" alt="${file.title}" onerror="console.log('Thumbnail load failed for ${file.title}: ${imgSrc}'); this.src='https://via.placeholder.com/300x200?text=Preview';">
                 <div class="file-info">
                     <div class="file-title">${file.title}</div>
                     <a href="${file.file}" class="file-link" download>📥 Download</a>
