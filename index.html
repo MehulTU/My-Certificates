@@ -3,24 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the professional certificates and achievements of Mehul Vinayak Patil, showcasing expertise in data science, programming, and leadership.">
+  <meta name="keywords" content="Mehul Vinayak Patil, certificates, data science, programming, internships, achievements">
+  <meta name="author" content="Mehul Vinayak Patil">
   <title>Mehul Vinayak Patil - Certificates</title>
-  <meta name="description" content="Showcase of professional certificates and achievements by Mehul Vinayak Patil">
   <link rel="icon" href="https://via.placeholder.com/32?text=M" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; }
+    body { margin: 0; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
     .certificate-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .certificate-card:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
-    .modal { transition: opacity 0.3s ease; }
-    .fade-in { animation: fadeIn 0.5s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .certificate-card:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
+    .modal { transition: opacity 0.3s ease, transform 0.3s ease; }
+    .modal-open { opacity: 1; transform: scale(1); }
+    .modal-closed { opacity: 0; transform: scale(0.95); }
+    .fade-in { animation: fadeIn 0.8s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .lazy-img { loading: lazy; }
+    .btn-ripple { position: relative; overflow: hidden; }
+    .btn-ripple::after {
+      content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+      background: rgba(255, 255, 255, 0.2); border-radius: 50%; transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    .btn-ripple:hover::after { width: 200px; height: 200px; }
+    .preloader { position: fixed; inset: 0; background: #1a1a2e; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
+    .preloader.hidden { opacity: 0; pointer-events: none; }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(to right, #ffd700, #ff6b6b); z-index: 1000; transition: width 0.3s ease; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+<body class="bg-gray-900 text-white">
+  <div className="preloader" id="preloader">
+    <div className="text-2xl font-bold text-gold-400 animate-pulse">Loading...</div>
+  </div>
+  <div className="progress-bar" id="progressBar" style={{ width: '0%' }}></div>
+  <div id="particles-js" style={{ position: 'fixed', width: '100%', height: '100%', zIndex: -1 }}></div>
   <div id="root"></div>
 
   <script type="text/babel">
@@ -30,6 +52,7 @@
         title: "Data Science with Microsoft Certification",
         date: "2020",
         type: "folder",
+        category: "Data Science",
         link: "cert1/index.html",
         files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"],
         thumbnail: "cert1/cert1a-thumb.png"
@@ -39,6 +62,7 @@
         title: "MATLAB",
         date: "2020",
         type: "folder",
+        category: "Programming",
         link: "cert2/index.html",
         files: ["cert2a.pdf", "cert2b.pdf"],
         thumbnail: "cert2/cert2a-thumb.png"
@@ -48,6 +72,7 @@
         title: "Research Paper",
         date: "2021-2022",
         type: "folder",
+        category: "Research",
         link: "cert3/index.html",
         files: ["cert3a.pdf", "cert3b.pdf", "cert3c.pdf", "cert3d.jpg"],
         thumbnail: "cert3/cert3d-thumb.jpg"
@@ -57,6 +82,7 @@
         title: "Environmental Quiz Certificate",
         date: "2020",
         type: "pdf",
+        category: "General",
         file: "cert4.pdf",
         thumbnail: "cert4-thumb.jpg"
       },
@@ -65,6 +91,7 @@
         title: "ETG Internship (FEA_CFD)",
         date: "2021",
         type: "pdf",
+        category: "Internship",
         file: "cert5.pdf",
         thumbnail: "cert5-thumb.png"
       },
@@ -73,6 +100,7 @@
         title: "EV-ETG Internship (Electric Vehicle)",
         date: "2021",
         type: "pdf",
+        category: "Internship",
         file: "cert6.pdf",
         thumbnail: "cert6-thumb.jpg"
       },
@@ -81,6 +109,7 @@
         title: "Global Collaboration Car Design Certificate 2023 ADP",
         date: "2023",
         type: "pdf",
+        category: "Design",
         file: "cert7.pdf",
         thumbnail: "cert7-thumb.jpg"
       },
@@ -89,6 +118,7 @@
         title: "Management and Campus Leader",
         date: "2021-2022",
         type: "pdf",
+        category: "Leadership",
         file: "cert8.pdf",
         thumbnail: "cert8-thumb.jpg"
       },
@@ -97,6 +127,7 @@
         title: "Python and Machine Learning Internship",
         date: "2020",
         type: "pdf",
+        category: "Internship",
         file: "cert9.pdf",
         thumbnail: "cert9-thumb.jpg"
       },
@@ -105,6 +136,7 @@
         title: "Python Programming (MTA) – Microsoft Certified",
         date: "2020",
         type: "pdf",
+        category: "Programming",
         file: "cert10.pdf",
         thumbnail: "cert10-thumb.jpg"
       },
@@ -113,6 +145,7 @@
         title: "Shape UI Python (Workshop)",
         date: "2020",
         type: "pdf",
+        category: "Programming",
         file: "cert11.pdf",
         thumbnail: "cert11-thumb.jpg"
       },
@@ -121,27 +154,42 @@
         title: "Tata Bearing",
         date: "2020",
         type: "pdf",
+        category: "General",
         file: "cert12.pdf",
         thumbnail: "cert12-thumb.jpg"
       }
     ];
 
     function CertificateCard({ certificate, openModal }) {
+      const ref = React.useRef();
+      const [isVisible, setIsVisible] = React.useState(false);
+
+      React.useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+          { threshold: 0.1 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+      }, []);
+
       return (
         <div
-          className="certificate-card bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer fade-in"
+          ref={ref}
+          className={`certificate-card bg-gray-800 rounded-xl overflow-hidden shadow-xl cursor-pointer ${isVisible ? 'fade-in' : 'opacity-0'}`}
           onClick={() => openModal(certificate)}
         >
           <img
             src={certificate.thumbnail || 'https://via.placeholder.com/400x300?text=Preview'}
             alt={certificate.title}
-            className="w-full h-48 object-cover lazy-img"
+            className="w-full h-56 object-cover lazy-img"
             onError={(e) => (e.target.src = 'https://via.placeholder.com/400x300?text=Preview')}
           />
-          <div className="p-4">
-            <h3 className="text-lg font-semibold truncate">{certificate.title}</h3>
-            <p className="text-sm text-gray-400">Issued: {certificate.date}</p>
-            <p className="text-sm text-blue-400">{certificate.type === 'folder' ? '📁 Folder' : '📄 PDF'}</p>
+          <div className="p-5">
+            <h3 className="text-xl font-semibold text-gold-400 truncate">{certificate.title}</h3>
+            <p className="text-sm text-gray-300">Issued: {certificate.date}</p>
+            <p className="text-sm text-blue-400">{certificate.category}</p>
+            <p className="text-sm text-gray-400">{certificate.type === 'folder' ? '📁 Folder' : '📄 PDF'}</p>
           </div>
         </div>
       );
@@ -150,32 +198,34 @@
     function Modal({ isOpen, closeModal, certificate }) {
       if (!isOpen) return null;
       return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 modal">
-          <div className="bg-gray-800 rounded-lg p-6 max-w-lg w-full relative">
+        <div className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 modal ${isOpen ? 'modal-open' : 'modal-closed'}`}>
+          <div className="bg-gray-900 rounded-xl p-8 max-w-2xl w-full relative">
             <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-white text-xl"
+              className="absolute top-4 right-4 text-gray-300 hover:text-white text-2xl"
               onClick={closeModal}
+              aria-label="Close modal"
             >
               ✕
             </button>
-            <h2 className="text-2xl font-bold mb-4">{certificate.title}</h2>
+            <h2 className="text-3xl font-bold text-gold-400 mb-4 font-playfair">{certificate.title}</h2>
             <img
-              src={certificate.thumbnail || 'https://via.placeholder.com/400x300?text=Preview'}
+              src={certificate.thumbnail || 'https://via.placeholder.com/600x400?text=Preview'}
               alt={certificate.title}
-              className="w-full h-auto rounded-lg mb-4 lazy-img"
-              onError={(e) => (e.target.src = 'https://via.placeholder.com/400x300?text=Preview')}
+              className="w-full h-auto rounded-lg mb-4 lazy-img transform hover:scale-105 transition-transform duration-300"
+              onError={(e) => (e.target.src = 'https://via.placeholder.com/600x400?text=Preview')}
             />
-            <p className="text-gray-400 mb-2">Issued: {certificate.date}</p>
+            <p className="text-gray-300 mb-2">Category: {certificate.category}</p>
+            <p className="text-gray-300 mb-4">Issued: {certificate.date}</p>
             {certificate.type === 'folder' ? (
               <div>
                 <a
                   href={certificate.link}
-                  className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mb-4"
+                  className="btn-ripple inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 mb-4"
                 >
                   📁 Open Folder
                 </a>
                 <div className="text-sm text-gray-300">
-                  <p className="font-semibold">Files:</p>
+                  <p className="font-semibold mb-2">Files:</p>
                   {certificate.files.map((file, index) => (
                     <a
                       key={index}
@@ -191,7 +241,7 @@
             ) : (
               <a
                 href={certificate.file}
-                className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="btn-ripple inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700"
                 download
               >
                 📥 Download PDF
@@ -206,46 +256,111 @@
       const [selectedCertificate, setSelectedCertificate] = React.useState(null);
       const [searchTerm, setSearchTerm] = React.useState('');
       const [filterYear, setFilterYear] = React.useState('');
+      const [filterCategory, setFilterCategory] = React.useState('');
+
+      React.useEffect(() => {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: '#ffd700' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.3, random: true },
+            size: { value: 3, random: true },
+            line_linked: { enable: false },
+            move: { enable: true, speed: 1, direction: 'none', random: true }
+          },
+          interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' } } }
+        });
+
+        setTimeout(() => {
+          document.getElementById('preloader').classList.add('hidden');
+        }, 1000);
+
+        const updateProgress = () => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = (scrollTop / docHeight) * 100;
+          document.getElementById('progressBar').style.width = `${progress}%`;
+        };
+        window.addEventListener('scroll', updateProgress);
+        return () => window.removeEventListener('scroll', updateProgress);
+      }, []);
+
+      React.useEffect(() => {
+        const typed = new Typed('#typed', {
+          strings: ['Data Scientist', 'Programmer', 'Innovator', 'Leader'],
+          typeSpeed: 50,
+          backSpeed: 30,
+          loop: true
+        });
+        return () => typed.destroy();
+      }, []);
 
       const openModal = (certificate) => setSelectedCertificate(certificate);
       const closeModal = () => setSelectedCertificate(null);
 
       const filteredCertificates = certificates.filter((cert) =>
         cert.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (filterYear ? cert.date.includes(filterYear) : true)
+        (filterYear ? cert.date.includes(filterYear) : true) &&
+        (filterCategory ? cert.category === filterCategory : true)
       );
 
       const years = [...new Set(certificates.map((cert) => cert.date))].sort();
+      const categories = [...new Set(certificates.map((cert) => cert.category))].sort();
 
       return (
-        <div className="min-h-screen">
-          <header className="py-12 text-center bg-gradient-to-r from-blue-800 to-purple-800">
-            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+        <div className="min-h-screen relative">
+          <nav className="fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-90 backdrop-blur-md z-40 shadow-lg">
+            <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+              <h1 className="text-2xl font-bold text-gold-400 font-playfair">Mehul Patil</h1>
+              <div>
+                <a href="#certificates" className="text-gray-300 hover:text-gold-400 mx-4">Certificates</a>
+                <a href="#about" className="text-gray-300 hover:text-gold-400 mx-4">About</a>
+              </div>
+            </div>
+          </nav>
+          <header className="py-24 text-center bg-gradient-to-br from-blue-900 to-purple-900">
+            <h1 className="text-5xl md:text-6xl font-bold text-gold-400 font-playfair mb-4">
               Mehul Vinayak Patil
             </h1>
-            <p className="mt-2 text-lg text-gray-300">Professional Certificates & Achievements</p>
+            <p className="text-xl text-gray-300">
+              Showcasing Excellence as a <span id="typed" className="text-gold-400"></span>
+            </p>
           </header>
-          <main className="container mx-auto px-4 py-8">
+          <main id="certificates" className="container mx-auto px-4 py-12">
             <div className="mb-8 flex flex-col sm:flex-row gap-4 justify-between items-center">
               <input
                 type="text"
                 placeholder="Search certificates..."
-                className="w-full sm:w-1/2 p-2 rounded-lg bg-gray-700 text-white border-none focus:ring-2 focus:ring-blue-400"
+                className="w-full sm:w-1/3 p-3 rounded-lg bg-gray-800 text-white border-none focus:ring-2 focus:ring-gold-400"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                aria-label="Search certificates"
               />
               <select
-                className="p-2 rounded-lg bg-gray-700 text-white border-none focus:ring-2 focus:ring-blue-400"
+                className="p-3 rounded-lg bg-gray-800 text-white border-none focus:ring-2 focus:ring-gold-400"
                 value={filterYear}
                 onChange={(e) => setFilterYear(e.target.value)}
+                aria-label="Filter by year"
               >
                 <option value="">All Years</option>
                 {years.map((year) => (
                   <option key={year} value={year}>{year}</option>
                 ))}
               </select>
+              <select
+                className="p-3 rounded-lg bg-gray-800 text-white border-none focus:ring-2 focus:ring-gold-400"
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+                aria-label="Filter by category"
+              >
+                <option value="">All Categories</option>
+                {categories.map((category) => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredCertificates.map((certificate) => (
                 <CertificateCard
                   key={certificate.id}
@@ -255,21 +370,36 @@
               ))}
             </div>
           </main>
+          <section id="about" className="bg-gray-800 py-12 text-center">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold text-gold-400 font-playfair mb-4">About Me</h2>
+              <p className="text-gray-300 max-w-2xl mx-auto">
+                I am a passionate data scientist and programmer with a track record of excellence in academics and professional projects. Explore my certificates to see my journey in data science, programming, and leadership.
+              </p>
+              <a
+                href="https://linkedin.com/in/yourprofile"
+                className="btn-ripple inline-block mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700"
+              >
+                Connect on LinkedIn
+              </a>
+            </div>
+          </section>
           <Modal
             isOpen={!!selectedCertificate}
             closeModal={closeModal}
             certificate={selectedCertificate || {}}
           />
-          <footer className="py-4 text-center text-gray-400 bg-gray-800">
+          <footer className="py-6 text-center text-gray-400 bg-gray-900">
             <p>&copy; 2025 Mehul Vinayak Patil. All rights reserved.</p>
             <div className="mt-2">
-              <a href="https://linkedin.com/in/yourprofile" className="text-blue-400 hover:underline mx-2">LinkedIn</a>
-              <a href="https://github.com/mehultu" className="text-blue-400 hover:underline mx-2">GitHub</a>
+              <a href="https://linkedin.com/in/yourprofile" className="text-gold-400 hover:underline mx-2">LinkedIn</a>
+              <a href="https://github.com/mehultu" className="text-gold-400 hover:underline mx-2">GitHub</a>
             </div>
           </footer>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700"
+            className="fixed bottom-6 right-6 btn-ripple bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:from-blue-700 hover:to-purple-700"
+            aria-label="Back to top"
           >
             ↑
           </button>
