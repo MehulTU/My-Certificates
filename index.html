@@ -13,24 +13,39 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a2e3c 0%, #2a445a 25%, #4a6e8c 50%, #6a82a0 100%);
+            background: linear-gradient(135deg, #1a2e44 0%, #2a4060 25%, #3a5a7c 50%, #4a6e90 100%);
             color: #fff;
             overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(200, 200, 200, 0.02) 50%, rgba(255, 255, 255, 0.05) 100%);
+            z-index: 0;
+            pointer-events: none;
         }
         .container {
             max-width: 1300px;
             margin: 0 auto;
             padding: 30px;
+            position: relative;
+            z-index: 1;
         }
         header {
             text-align: center;
             padding: 80px 0;
-            background: linear-gradient(135deg, rgba(26, 46, 60, 0.9) 0%, rgba(42, 68, 90, 0.9) 50%, rgba(74, 110, 140, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(26, 46, 68, 0.9) 0%, rgba(42, 64, 96, 0.9) 50%, rgba(58, 90, 124, 0.9) 100%);
             margin-bottom: 50px;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(74, 110, 144, 0.2);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         header::after {
             content: '';
@@ -39,15 +54,16 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, #d4a017, #c0c0c0);
+            background: linear-gradient(to right, #c0c0c0, #d3d3d3);
+            box-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
         }
         h1 {
-            color: #d4a017;
-            font-size: 4.5em;
+            color: #87CEEB;
+            font-size: 5.5em;
             font-family: 'Playfair Display', serif;
             font-weight: 900;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(212, 160, 23, 0.3);
+            text-shadow: 0 2px 10px rgba(135, 206, 235, 0.2), 0 0 5px rgba(135, 206, 235, 0.1);
         }
         .subtitle {
             color: #b3c5e7;
@@ -61,37 +77,54 @@
             margin: 50px 0;
         }
         .cert-card {
-            background: linear-gradient(135deg, rgba(30, 42, 68, 0.9) 0%, rgba(42, 64, 96, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(30, 42, 80, 0.9) 0%, rgba(42, 64, 102, 0.9) 100%);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 10px rgba(58, 90, 124, 0.15);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(200, 200, 200, 0.01) 50%, rgba(255, 255, 255, 0.03) 100%);
+            z-index: 0;
+            pointer-events: none;
         }
         .cert-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(58, 90, 124, 0.3);
         }
         .cert-card img {
             width: 100%;
             height: 250px;
             object-fit: cover;
             transition: opacity 0.4s ease;
+            position: relative;
+            z-index: 1;
         }
         .cert-card img:hover {
             opacity: 0.85;
         }
         .cert-info {
             padding: 25px;
+            position: relative;
+            z-index: 1;
         }
         .cert-title {
             font-size: 1.6em;
             font-weight: 700;
-            color: #d4a017;
+            color: #c0c0c0;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 1px 5px rgba(192, 192, 192, 0.1);
         }
         .cert-date {
             color: #b3c5e7;
@@ -107,23 +140,26 @@
             font-weight: 600;
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            box-shadow: 0 0 8px rgba(192, 192, 192, 0.1);
         }
         .folder-btn {
-            background: #34495e;
+            background: #2c3e50;
             color: white;
         }
         .folder-btn:hover {
-            background: #2c3e50;
-            border-color: #d4a017;
+            background: #233240;
+            border-color: #c0c0c0;
+            box-shadow: 0 0 12px rgba(192, 192, 192, 0.2);
             transform: translateY(-2px);
         }
         .download-btn {
-            background: #466b9f;
+            background: #34495e;
             color: white;
         }
         .download-btn:hover {
-            background: #3a5a8a;
-            border-color: #d4a017;
+            background: #2c3e50;
+            border-color: #c0c0c0;
+            box-shadow: 0 0 12px rgba(192, 192, 192, 0.2);
             transform: translateY(-2px);
         }
         .file-list {
@@ -131,32 +167,45 @@
             font-size: 1em;
         }
         .file-list a {
-            color: #466b9f;
+            color: #34495e;
             text-decoration: none;
         }
         .file-list a:hover {
             text-decoration: underline;
-            color: #d4a017;
+            color: #c0c0c0;
         }
         #about-section {
-            background: linear-gradient(135deg, rgba(30, 42, 68, 0.95) 0%, rgba(42, 64, 96, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(30, 42, 80, 0.95) 0%, rgba(42, 64, 102, 0.95) 100%);
             padding: 60px 30px;
             text-align: center;
             margin-top: 60px;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(212, 160, 23, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(58, 90, 124, 0.2);
+            border: 2px solid rgba(192, 192, 192, 0.1);
             transition: transform 0.4s ease;
+            position: relative;
+        }
+        #about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(200, 200, 200, 0.01) 50%, rgba(255, 255, 255, 0.03) 100%);
+            z-index: 0;
+            pointer-events: none;
         }
         #about-section:hover {
             transform: translateY(-5px);
         }
         #about-section h2 {
-            color: #d4a017;
+            color: #c0c0c0;
             font-size: 3em;
             font-family: 'Playfair Display', serif;
             font-weight: 900;
             margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(192, 192, 192, 0.2);
         }
         #about-section p {
             max-width: 1000px;
@@ -167,17 +216,19 @@
         }
         #about-section a {
             padding: 15px 35px;
-            background: #34495e;
+            background: #2c3e50;
             color: white;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            box-shadow: 0 0 8px rgba(192, 192, 192, 0.1);
         }
         #about-section a:hover {
-            background: #2c3e50;
-            border-color: #d4a017;
+            background: #233240;
+            border-color: #c0c0c0;
+            box-shadow: 0 0 12px rgba(192, 192, 192, 0.2);
             transform: translateY(-2px);
         }
         footer {
@@ -185,20 +236,22 @@
             padding: 30px;
             background: linear-gradient(135deg, #16222e 0%, #1e2a44 100%);
             margin-top: 60px;
-            border-top: 2px solid rgba(212, 160, 23, 0.1);
+            border-top: 2px solid rgba(192, 192, 192, 0.1);
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
         }
         footer p {
             color: #b3c5e7;
             font-size: 1em;
         }
         footer a {
-            color: #d4a017;
+            color: #c0c0c0;
             text-decoration: none;
             margin: 0 15px;
             transition: color 0.4s ease;
+            text-shadow: 0 1px 3px rgba(192, 192, 192, 0.1);
         }
         footer a:hover {
-            color: #c0c0c0;
+            color: #d3d3d3;
         }
         #particles-js {
             position: fixed;
@@ -209,7 +262,7 @@
         .preloader {
             position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, rgba(26, 46, 60, 0.95) 0%, rgba(42, 68, 90, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(26, 46, 68, 0.95) 0%, rgba(42, 64, 96, 0.95) 100%);
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -225,27 +278,29 @@
             top: 0;
             left: 0;
             height: 5px;
-            background: linear-gradient(to right, #d4a017, #c0c0c0);
+            background: linear-gradient(to right, #c0c0c0, #d3d3d3);
             z-index: 1000;
+            box-shadow: 0 0 8px rgba(192, 192, 192, 0.3);
             transition: width 0.3s ease;
         }
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #1e2a44 0%, #2a4060 100%);
+            background: linear-gradient(135deg, #1e2a50 0%, #2a4066 100%);
             color: white;
             padding: 12px;
             border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 15px rgba(58, 90, 124, 0.2);
             transition: all 0.4s ease;
         }
         .back-to-top:hover {
-            background: linear-gradient(135deg, #2a4060 0%, #4a6e8c 100%);
+            background: linear-gradient(135deg, #2a4066 0%, #3a5a7c 100%);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(58, 90, 124, 0.3);
             transform: rotate(360deg);
         }
         @media (max-width: 768px) {
-            h1 { font-size: 2.8em; }
+            h1 { font-size: 3.5em; }
             .cert-grid { grid-template-columns: 1fr; }
             #about-section { padding: 40px 20px; }
         }
@@ -253,14 +308,14 @@
 </head>
 <body>
     <div class="preloader" id="preloader">
-        <div class="text-2xl font-bold text-gold-400 animate-pulse">Loading...</div>
+        <div class="text-2xl font-bold text-gray-300 animate-pulse">Loading...</div>
     </div>
     <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
     <div id="particles-js"></div>
 
     <header>
         <h1>Mehul Vinayak Patil</h1>
-        <p class="subtitle">Showcasing Excellence as a <span id="typed" class="text-gold-400"></span></p>
+        <p class="subtitle">Showcasing Excellence as a <span id="typed" class="text-gray-300"></span></p>
     </header>
     
     <div class="container">
@@ -280,8 +335,8 @@
     <footer>
         <p>&copy; 2025 Mehul Vinayak Patil. All rights reserved.</p>
         <div class="mt-4">
-            <a href="https://www.linkedin.com/in/mehul-patil-711549219" class="text-gold-400 hover:underline mx-2" target="_blank">LinkedIn</a>
-            <a href="https://github.com/mehultu" class="text-gold-400 hover:underline mx-2" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/mehul-patil-711549219" class="text-gray-300 hover:underline mx-2" target="_blank">LinkedIn</a>
+            <a href="https://github.com/mehultu" class="text-gray-300 hover:underline mx-2" target="_blank">GitHub</a>
         </div>
     </footer>
 
@@ -293,7 +348,7 @@
         particlesJS('particles-js', {
             particles: {
                 number: { value: 50, density: { enable: true, value_area: 800 } },
-                color: { value: '#d4a017' },
+                color: { value: '#87CEEB' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.5, random: true },
                 size: { value: 5, random: true },
@@ -337,7 +392,7 @@
                 date: "2020",
                 type: "folder",
                 link: "cert1/index.html",
-                files: ["cert1a", "cert1b", "cert1c"],
+                files: ["cert1a.pdf", "cert1b.pdf", "cert1c.pdf"],
                 thumbnail: "cert1/cert1a-thumb.png"
             },
             {
@@ -345,7 +400,7 @@
                 date: "2020",
                 type: "folder",
                 link: "cert2/index.html",
-                files: ["cert2a", "cert2b"],
+                files: ["cert2a.pdf", "cert2b.pdf"],
                 thumbnail: "cert2/cert2a-thumb.png"
             },
             {
@@ -353,7 +408,7 @@
                 date: "2021-2022",
                 type: "folder",
                 link: "cert3/index.html",
-                files: ["cert3a", "cert3b", "cert3c", "cert3d"],
+                files: ["cert3a.pdf", "cert3b.pdf", "cert3c.pdf", "cert3d.jpg"],
                 thumbnail: "cert3/cert3d-thumb.jpg"
             },
             {
@@ -445,4 +500,3 @@
     </script>
 </body>
 </html>
-
