@@ -8,15 +8,17 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
         body { margin: 0; font-family: 'Poppins', sans-serif; background: #1a1a2e; color: #fff; overflow-x: hidden; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         h2 { color: #ffd700; font-size: 2.5em; font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 40px; }
-        .file-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .file-card { background: #16213e; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; }
-        .file-card:hover { transform: translateY(-8px); }
-        .file-thumb { width: 300px; height: 200px; object-fit: cover; border-radius: 10px; transition: opacity 0.3s ease; }
-        .file-thumb:hover { opacity: 0.9; }
-        .file-link { color: #ffd700; text-decoration: none; font-size: 1.1em; font-weight: 500; display: block; margin-top: 10px; }
-        .file-link:hover { color: #e67e22; }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 40px 0; }
+        .file-card { background: #16213e; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; }
+        .file-card:hover { transform: translateY(-10px); }
+        .file-card img { width: 100%; height: 250px; object-fit: cover; transition: opacity 0.3s ease; }
+        .file-card img:hover { opacity: 0.9; }
+        .file-info { padding: 20px; }
+        .file-title { font-size: 1.4em; font-weight: 600; color: #ffd700; margin-bottom: 10px; }
+        .file-link { display: inline-block; margin-top: 15px; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 500; background: #3498db; color: white; transition: background 0.3s ease; }
+        .file-link:hover { background: #2980b9; }
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
     </style>
 </head>
@@ -24,37 +26,34 @@
     <div id="particles-js"></div>
     <div class="container">
         <h2>Research Paper Files</h2>
-        <div class="file-grid">
-            <div class="file-card">
-                <a href="./cert3a.pdf" download class="file-link">
-                    <img src="./certi3a-thumb.png" alt="Thumbnail for cert3a" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
-                    cert3a.pdf
-                </a>
-            </div>
-            <div class="file-card">
-                <a href="./cert3b.pdf" download class="file-link">
-                    <img src="./certi3b-thumb.png" alt="Thumbnail for cert3b" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
-                    cert3b.pdf
-                </a>
-            </div>
-            <div class="file-card">
-                <a href="./cert3c.pdf" download class="file-link">
-                    <img src="./certi3c-thumb.png" alt="Thumbnail for cert3c" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
-                    cert3c.pdf
-                </a>
-            </div>
-            <div class="file-card">
-                <a href="./cert3d.jpg" download class="file-link">
-                    <img src="./certi3d-thumb.png" alt="Thumbnail for cert3d" class="file-thumb" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
-                    cert3d.jpg
-                </a>
-            </div>
-        </div>
+        <div class="file-grid" id="fileGrid"></div>
     </div>
     <script>
         particlesJS('particles-js', {
             particles: { number: { value: 50, density: { enable: true, value_area: 800 } }, color: { value: '#ffd700' }, shape: { type: 'circle' }, opacity: { value: 0.3, random: true }, size: { value: 3, random: true }, line_linked: { enable: false }, move: { enable: true, speed: 1, direction: 'none', random: true } },
             interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' } } }
+        });
+
+        const files = [
+            { title: "cert3a.pdf", file: "cert3a.pdf", thumbnail: "certi3a-thumb.png" },
+            { title: "cert3b.pdf", file: "cert3b.pdf", thumbnail: "certi3b-thumb.png" },
+            { title: "cert3c.pdf", file: "cert3c.pdf", thumbnail: "certi3c-thumb.png" },
+            { title: "cert3d.jpg", file: "cert3d.jpg", thumbnail: "certi3d-thumb.png" }
+        ];
+
+        const fileGrid = document.getElementById('fileGrid');
+        files.forEach(file => {
+            const card = document.createElement('div');
+            card.className = 'file-card';
+            let imgSrc = file.thumbnail || 'https://via.placeholder.com/300x200?text=PDF';
+            card.innerHTML = `
+                <img src="${imgSrc}" alt="${file.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Preview';">
+                <div class="file-info">
+                    <div class="file-title">${file.title}</div>
+                    <a href="${file.file}" class="file-link" download>📥 Download</a>
+                </div>
+            `;
+            fileGrid.appendChild(card);
         });
     </script>
 </body>
