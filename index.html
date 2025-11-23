@@ -46,22 +46,21 @@
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
   }
   /* <-- only this rule changed: NAME size increased (responsive) -->
-    h1{
-    color: var(--accent);
-    font-family: 'Playfair Display', serif;
-    font-weight:900;
-    margin:0 0 10px 0;
-    font-size: clamp(5rem, 8vw, 8rem) !important; 
-    line-height:1;
-    text-shadow: 0 2px 10px rgba(135,206,235,0.15);
-  }
-   .subtitle{ 
-    color: var(--muted); 
-    font-size: clamp(1.6rem, 3vw, 2.2rem) !important; 
-    font-weight:600; 
-  }
-  /* subtitle slightly smaller than name (only font-size changed) */
-  .subtitle{ color: var(--muted); font-size: clamp(1.2rem, 2.2vw, 1.6rem) !important; font-weight:600; }
+ h1{
+    color: #87CEEB !important;              /* force sky blue */
+    font-family: 'Playfair Display', serif; /* preserve elegant font */
+    font-weight: 900 !important;
+    margin: 0 0 10px 0;
+    font-size: clamp(5rem, 8vw, 8rem) !important;  /* BIGGER title */
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(135,206,235,0.18);
+}
+
+.subtitle{
+    color: #b3c5e7 !important;              /* keep original color */
+    font-size: clamp(1.6rem, 3vw, 2.4rem) !important; /* larger subtitle */
+    font-weight: 600 !important;
+}
 
   /* cert grid */
   .cert-grid{
@@ -315,4 +314,5 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Tab') document.body
 </script>
 </body>
 </html>
+
 
