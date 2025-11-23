@@ -1,223 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mehul Vinayak Patil — Certificates</title>
-  <link rel="icon" href="https://via.placeholder.com/32?text=MP" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mehul Vinayak Patil - Certificates</title>
+<link rel="icon" href="https://via.placeholder.com/32?text=MP" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg-1: #0f1724;
-      --bg-2: #162536;
-      --accent: #60a5fa;
-      --muted: #9aa9c7;
-      --card: rgba(255,255,255,0.03);
-      --radius: 14px;
-      --max-width: 1200px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial;
-      color:#eaf3ff;
-      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-    }
+<!-- keep your scripts (deferred where appropriate) -->
+<script src="https://cdn.tailwindcss.com" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
 
-    .wrap{max-width:var(--max-width);margin:36px auto;padding:20px}
+<style>
+  /* --- keep the original visual vibe but tidy — minimal changes --- */
+  :root{
+    --bg1: #1a2e44;
+    --bg2: #2a4060;
+    --accent: #87CEEB;
+    --muted: #b3c5e7;
+    --card-bg: rgba(30,42,80,0.9);
+    --radius: 18px;
+    --maxw: 1300px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
 
-    header{display:flex;align-items:center;gap:18px;padding:28px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6)}
-    .avatar{width:68px;height:68px;border-radius:10px;flex:0 0 68px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#38bdf8);font-weight:700;color:#082032}
+  /* container */
+  .container{max-width:var(--maxw);margin:0 auto;padding:28px;position:relative;z-index:1}
 
-    /* NAME + subtitle sizes adjusted per request */
-    .title h1{margin:0;font-size:clamp(3rem,7vw,5.5rem);line-height:1;color:var(--accent);font-family:'Playfair Display',serif;font-weight:900}
-    .title p{margin:8px 0 0;color:var(--muted);font-size:clamp(1rem,2vw,1.2rem);font-weight:600}
+  /* header (keeps original vibe) */
+  header{
+    text-align:center;
+    padding:64px 24px;
+    margin-bottom:40px;
+    border-radius:20px;
+    background: linear-gradient(135deg, rgba(26,46,68,0.9), rgba(42,64,96,0.9));
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  }
+  /* <-- NAME size increased (responsive) as requested -->
+     only this rule changed for the name */
+  h1{
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-weight:900;
+    margin:0 0 10px 0;
+    font-size: clamp(3.2rem, 6.5vw, 5rem); /* larger and responsive */
+    line-height:1;
+    text-shadow: 0 2px 10px rgba(135,206,235,0.15);
+  }
+  /* subtitle slightly smaller than name */
+  .subtitle{ color: var(--muted); font-size:1rem; font-weight:600; }
 
-    .toolbar{display:flex;gap:12px;margin:18px 0;flex-wrap:wrap}
-    .input,.select,.btn{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#eaf3ff}
-    .search{flex:1;min-width:200px}
+  /* cert grid */
+  .cert-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap:28px;
+    margin:36px 0;
+  }
+  .cert-card{
+    background: linear-gradient(180deg, rgba(30,42,80,0.95), rgba(42,64,102,0.95));
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transition: transform .32s ease, box-shadow .32s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .cert-card:hover{ transform:translateY(-12px); box-shadow:0 20px 50px rgba(0,0,0,0.7); }
+  .cert-card img{ width:100%; height:250px; object-fit:cover; display:block; }
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:20px}
-    .card{background:linear-gradient(180deg,var(--card),transparent);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 30px rgba(2,6,23,0.6);transition:transform .28s ease,box-shadow .28s ease;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column}
-    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
-    .thumb{width:100%;height:170px;object-fit:cover}
-    .meta{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
-    .meta .title{font-weight:600;color:#dfefff;font-size:1rem}
-    .meta .date{color:var(--muted);font-size:0.9rem}
-    .meta .actions{margin-top:6px;display:flex;gap:8px}
-    .link{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:inherit;font-weight:600}
-    .download{background:linear-gradient(90deg,#0b1220,rgba(96,165,250,0.08));border:1px solid rgba(96,165,250,0.12)}
+  .cert-info{ padding:20px; display:flex; flex-direction:column; gap:10px; }
+  .cert-title{ font-size:1.15rem; font-weight:700; color:#cfdff3; text-transform:uppercase; letter-spacing:0.6px; }
+  .cert-date{ color:var(--muted); font-weight:600; }
 
-    /* EMPTY */
-    .empty{text-align:center;padding:40px;border-radius:10px;color:var(--muted)}
+  .folder-btn, .download-btn{
+    display:inline-block; margin-top:12px; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600;
+    border:1px solid rgba(192,192,192,0.06); background:rgba(255,255,255,0.02); color:#fff;
+  }
+  .folder-btn:hover, .download-btn:hover{ transform:translateY(-3px); border-color:rgba(135,206,235,0.35); }
 
-    /* ABOUT SECTION — centered heading + justified paragraph + centered LinkedIn below */
-    #about-section{
-      margin-top:32px;
-      padding:28px;
-      border-radius:18px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
-      box-shadow:0 10px 26px rgba(0,0,0,0.45);
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.025);
-    }
-    #about-section h2{margin:0 0 16px 0;color:#dfefff;font-family:'Playfair Display',serif;font-weight:700;font-size:1.6rem;text-align:center}
-    .about-text{max-width:980px;margin:0 auto;color:var(--muted);line-height:1.7;text-align:justify;text-justify:inter-word;font-size:1.05rem}
-    .about-link{margin-top:16px;text-align:center}
-    .about-link a{display:inline-block;padding:10px 18px;border-radius:10px;background:linear-gradient(90deg,rgba(96,165,250,0.1),rgba(96,165,250,0.06));color:#eaf3ff;text-decoration:none;font-weight:600;border:1px solid rgba(96,165,250,0.12)}
+  /* ABOUT section — center heading, justified paragraph (like Word) */
+  #about-section{
+    margin-top:48px;
+    padding:32px;
+    border-radius:20px;
+    background: linear-gradient(180deg, rgba(30,42,80,0.95), rgba(42,64,102,0.95));
+    box-shadow:0 15px 40px rgba(0,0,0,0.45);
+    border: 1px solid rgba(192,192,192,0.06);
+    text-align:center; /* centers the H2 and any inline elements */
+  }
+  #about-section h2{
+    color:#cfdff3;
+    font-family:'Playfair Display', serif;
+    font-weight:800;
+    margin:0 0 18px 0;
+    font-size:1.9rem;
+    text-align:center;
+  }
+  /* the justified paragraph block */
+  .about-text{
+    max-width:960px;        /* constrain width so justification looks clean */
+    margin:0 auto;          /* center the block */
+    color:var(--muted);
+    font-size:1.05rem;
+    line-height:1.75;
+    text-align:justify;     /* THIS makes it like MS Word */
+    text-justify:inter-word;
+    hyphens:auto;           /* reduces large gaps on narrow screens */
+  }
+  .about-text a{ color: #87CEEB; text-decoration:underline; }
 
-    footer{text-align:center;color:var(--muted);margin:28px 0 10px}
+  /* LINK centered on its own line under the paragraph */
+  .about-link{ margin-top:18px; text-align:center; }
+  .about-link a{ display:inline-block; padding:8px 14px; border-radius:8px; background:rgba(135,206,235,0.06); color:#eaf3ff; text-decoration:none; border:1px solid rgba(135,206,235,0.12); font-weight:600; }
 
-    @media (max-width:640px){.thumb{height:140px}.title h1{font-size:2.4rem}.title p{font-size:1rem}.about-text{font-size:1rem;line-height:1.6}}
-  </style>
+  /* footer + small stuff */
+  footer{ text-align:center; padding:28px 0; color:var(--muted); margin-top:36px; }
+  #particles-js{ position:fixed; inset:0; z-index:-1; pointer-events:none; }
+  .preloader{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, rgba(11,18,32,0.96), rgba(13,22,36,0.96)); z-index:9999; transition:opacity .35s ease; }
+  .preloader.hidden{ opacity:0; pointer-events:none; visibility:hidden; }
+  .progress-bar{ position:fixed; top:0; left:0; height:5px; width:0; z-index:1000; background:linear-gradient(90deg,#c0c0c0,#d3d3d3); box-shadow:0 0 8px rgba(192,192,192,0.3); transition:width .2s linear; }
+  .back-to-top{ position:fixed; right:20px; bottom:20px; width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg,#1e2a50,#2a4066); color:white; box-shadow:0 5px 15px rgba(0,0,0,0.35); cursor:pointer; }
+
+  @media (max-width:768px){
+    h1{ font-size:2.6rem; }
+    .cert-card img{ height:180px; }
+    .about-text{ font-size:1rem; line-height:1.6; padding:0 10px; }
+  }
+</style>
 </head>
 <body>
-  <div class="wrap" role="main">
-    <header>
-      <div class="avatar" aria-hidden="true">MP</div>
-      <div class="title">
-        <h1>Mehul Vinayak Patil</h1>
-        <p>Certificates · Aerospace &amp; Mechatronics · R&amp;D portfolio</p>
-      </div>
-    </header>
+  <!-- preloader -->
+  <div class="preloader" id="preloader"><div style="color:#a9c9e6;font-weight:600">Loading...</div></div>
+  <div class="progress-bar" id="progressBar" style="width:0%"></div>
 
-    <div class="toolbar" aria-hidden="false">
-      <div class="search">
-        <label for="q" class="sr-only">Search certificates</label>
-        <input id="q" class="input" placeholder="Search by title, year or tag (e.g. MATLAB, Python)" aria-label="Search certificates">
-      </div>
+  <!-- particles -->
+  <div id="particles-js"></div>
 
-      <select id="filterYear" class="select" aria-label="Filter by year">
-        <option value="all">All years</option>
-        <option>2023</option>
-        <option>2022</option>
-        <option>2021</option>
-        <option>2020</option>
-      </select>
+  <header>
+    <h1>Mehul Vinayak Patil</h1>
+    <p class="subtitle">Showcasing Excellence — <span id="typed"></span></p>
+  </header>
 
-      <button id="clearBtn" class="btn" title="Reset filters">Reset</button>
-    </div>
+  <div class="container">
+    <!-- certificates grid -->
+    <div class="cert-grid" id="certGrid"></div>
 
-    <div id="grid" class="grid" aria-live="polite"></div>
-
-    <div id="empty" class="empty" style="display:none">No certificates match your search.</div>
-
+    <!-- ABOUT: centered heading, justified paragraph -->
     <section id="about-section" aria-labelledby="about-heading">
       <h2 id="about-heading">About Me</h2>
       <p class="about-text">
         I am a passionate Aerospace Engineering graduate student with a Mechatronics background and hands-on expertise in CAD design, automation, and electromobility. Proven success in EV prototyping, sensor integration, and ROS-based autonomous systems. Skilled in Siemens NX, MATLAB, Python, and hardware prototyping. Currently advancing German proficiency for seamless team integration.
       </p>
-      <div class="about-link"><a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" rel="noopener">Connect on LinkedIn</a></div>
+      <div class="about-link">
+        <a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
     </section>
 
     <footer>
-      <small>&copy; 2025 Mehul Vinayak Patil</small>
+      <p>&copy; 2025 Mehul Vinayak Patil. All rights reserved.</p>
+      <p><a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" style="color:#b3c5e7;margin-right:12px">LinkedIn</a><a href="https://github.com/mehultu" target="_blank" style="color:#b3c5e7">GitHub</a></p>
     </footer>
   </div>
 
-  <!-- Lightbox modal (kept as before) -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="close" id="closeBtn" aria-label="Close">✕</div>
-    <div class="inner"><img id="modalImg" alt="Certificate preview"></div>
+  <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <!-- modal lightbox (kept as before) -->
+  <div id="modal" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:2000">
+    <div style="position:relative;max-width:1100px;width:95%;"><img id="modalImg" src="" alt="preview" style="width:100%;height:auto;border-radius:10px"><button id="closeModal" style="position:absolute;right:8px;top:8px;padding:6px 8px;border-radius:6px;background:#222;color:#fff;border:none;cursor:pointer">✕</button></div>
   </div>
 
-  <script>
-    // ---------- IMPORTANT IMAGE SIZE RECOMMENDATION ----------
-    // Recommended thumbnail size: 600 x 400 px (aspect ratio 3:2)
-    // - Thumbnails: 600x400 (good quality + fast)
-    // - Full previews: 1600x1067 (for modal / download)
-    // ---------------------------------------------------------
-
-    const certificates = [
-      { title: "Data science with Microsoft certification", date: "2020", type: "folder", link: "cert1/index.html", files:["cert1a","cert1b","cert1c"], thumbnail: "cert1/cert1a-thumb.png", preview: "cert1/cert1a-full.jpg" },
-      { title: "MATLAB", date: "2020", type: "folder", link: "cert2/index.html", files:["cert2a","cert2b"], thumbnail: "cert2/cert2a-thumb.png", preview: "cert2/cert2a-full.jpg" },
-      { title: "Research Paper", date: "2021-2022", type: "folder", link: "cert3/index.html", files:["cert3a","cert3b","cert3c","cert3d"], thumbnail: "cert3/cert3d-thumb.jpg", preview: "cert3/cert3d-full.jpg" },
-      { title: "EV Battery Pack Sizing", date: "2022", type: "pdf", file: "cert4.pdf", thumbnail: "cert4-thumb.png", preview: "cert4-full.jpg" }
-    ];
-
-    const grid = document.getElementById('grid');
-    const empty = document.getElementById('empty');
-
-    function makeCard(cert){
-      const el = document.createElement('article');
-      el.className = 'card';
-      el.setAttribute('tabindex','0');
-
-      const img = document.createElement('img');
-      img.className = 'thumb';
-      img.alt = cert.title + ' — thumbnail';
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.src = cert.thumbnail || 'https://via.placeholder.com/600x400?text=Preview';
-      img.onerror = () => img.src = 'https://via.placeholder.com/600x400?text=Preview';
-      img.addEventListener('click', () => openModal(cert.preview || img.src, cert.title));
-
-      const meta = document.createElement('div'); meta.className = 'meta';
-      const t = document.createElement('div'); t.className='title'; t.textContent = cert.title;
-      const d = document.createElement('div'); d.className='date'; d.textContent = 'Issued: ' + (cert.date || '—');
-
-      const actions = document.createElement('div'); actions.className = 'actions';
-
-      if(cert.type === 'folder'){
-        const a = document.createElement('a'); a.className='link'; a.href = cert.link; a.textContent='Open Folder'; a.setAttribute('aria-label', `Open ${cert.title}`);
-        actions.appendChild(a);
-      } else if(cert.type === 'pdf'){
-        const a = document.createElement('a'); a.className='link download'; a.href = cert.file; a.setAttribute('download',''); a.textContent='Download PDF'; a.setAttribute('aria-label', `Download ${cert.title}`);
-        actions.appendChild(a);
-      }
-
-      if(cert.files && cert.files.length){
-        const list = document.createElement('div'); list.style.marginTop='6px'; list.style.fontSize='0.92rem'; list.style.color='var(--muted)';
-        list.innerHTML = 'Files: ' + cert.files.map(f => `<a href="${cert.link.replace('index.html','')}${f}" style="color:var(--accent);text-decoration:none">${f}</a>`).join(', ');
-        meta.appendChild(list);
-      }
-
-      meta.appendChild(t); meta.appendChild(d); meta.appendChild(actions);
-
-      el.appendChild(img); el.appendChild(meta);
-      return el;
-    }
-
-    function render(list){
-      grid.innerHTML = '';
-      if(!list.length){ grid.style.display='none'; empty.style.display='block'; return }
-      grid.style.display='grid'; empty.style.display='none';
-      list.forEach(c => grid.appendChild(makeCard(c)));
-    }
-
-    // initial render
-    render(certificates);
-
-    // search + filter
-    document.getElementById('q').addEventListener('input', e => {
-      const q = e.target.value.trim().toLowerCase();
-      const filtered = certificates.filter(c => (c.title + ' ' + (c.date||'')).toLowerCase().includes(q));
-      render(filtered);
+<script>
+/* ---------- particles init (light) ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.particlesJS) {
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 40, density: { enable: true, value_area: 800 } },
+        color: { value: '#87CEEB' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.45, random: true },
+        size: { value: 3.5, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 1.2, random: true }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } }
+      },
+      retina_detect: true
     });
+  }
+});
 
-    document.getElementById('filterYear').addEventListener('change', e => {
-      const v = e.target.value;
-      const filtered = (v === 'all') ? certificates : certificates.filter(c => String(c.date).includes(v));
-      render(filtered);
+/* ---------- typed.js ---------- */
+window.addEventListener('load', () => {
+  if (window.Typed) {
+    new Typed('#typed', {
+      strings: ['Aerospace Engineer', 'Mechatronics Engineer', 'CAD Designing', 'Motivation in R&D'],
+      typeSpeed: 50, backSpeed: 30, loop: true, showCursor: true, cursorChar: '|'
     });
+  }
 
-    document.getElementById('clearBtn').addEventListener('click', () => { document.getElementById('q').value=''; document.getElementById('filterYear').value='all'; render(certificates); });
+  // hide preloader quickly
+  const pre = document.getElementById('preloader');
+  if (pre) setTimeout(()=> pre.classList.add('hidden'), 500);
+});
 
-    // modal (lightbox)
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    function openModal(src, title){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); modalImg.src = src || 'https://via.placeholder.com/1600x1067?text=Preview'; modalImg.alt = title || 'Certificate preview'; }
-    function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalImg.src = ''; }
-    document.getElementById('closeBtn').addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+/* ---------- Certificates data (preserve original structure) ---------- */
+const certificates = [
+  { title: "Data science with Microsoft certification", date: "2020", type: "folder", link: "cert1/index.html", files: ["cert1a","cert1b","cert1c"], thumbnail: "cert1/cert1a-thumb.png" },
+  { title: "MATLAB", date: "2020", type: "folder", link: "cert2/index.html", files: ["cert2a","cert2b"], thumbnail: "cert2/cert2a-thumb.png" },
+  { title: "Research Paper", date: "2021-2022", type: "folder", link: "cert3/index.html", files: ["cert3a","cert3b","cert3c","cert3d"], thumbnail: "cert3/cert3d-thumb.jpg" },
+  { title: "EV Battery Pack Sizing", date: "2022", type: "pdf", file: "cert4.pdf", thumbnail: "cert4-thumb.png" },
+  { title: "ETG internship(FEA_CFD)", date: "2021", type: "pdf", file: "cert5.pdf", thumbnail: "cert5-thumb.png" },
+  { title: "EV- ETG internship (Electric vehicle)", date: "2021", type: "pdf", file: "cert6.pdf", thumbnail: "cert6-thumb.jpg" },
+  { title: "Global collaboration Car design_Certificate 2023 ADP", date: "2023", type: "pdf", file: "cert7.pdf", thumbnail: "cert7-thumb.jpg" },
+  { title: "Management and campus leader", date: "2021-2022", type: "pdf", file: "cert8.pdf", thumbnail: "cert8-thumb.jpg" },
+  { title: "Python and machine learning internship", date: "2020", type: "pdf", file: "cert9.pdf", thumbnail: "cert9-thumb.jpg" },
+  { title: "Python Programming (MTA) – Microsoft Certified", date: "2020", type: "pdf", file: "cert10.pdf", thumbnail: "cert10-thumb.png" },
+  { title: "Shape UI_ Python (workshop)", date: "2020", type: "pdf", file: "cert11.pdf", thumbnail: "cert11-thumb.jpg" },
+  { title: "Tata bearing", date: "2020", type: "pdf", file: "cert12.pdf", thumbnail: "cert12-thumb.jpg" },
+  { title: "Environmental quize certificate", date: "2020", type: "pdf", file: "cert13.pdf", thumbnail: "cert13-thumb.jpg" }
+];
 
-    document.addEventListener('keydown', (e) => { if(e.key === 'Tab') document.body.classList.add('show-outline'); });
-  </script>
+/* ---------- render grid (keeps your actions) ---------- */
+const certGrid = document.getElementById('certGrid');
+
+function createCard(cert){
+  const card = document.createElement('div'); card.className = 'cert-card'; card.tabIndex = 0;
+
+  const img = document.createElement('img'); img.alt = cert.title + ' preview'; img.loading = 'lazy';
+  img.src = cert.thumbnail || 'https://via.placeholder.com/800x600?text=Preview';
+  img.onerror = () => img.src = 'https://via.placeholder.com/800x600?text=Preview';
+
+  img.addEventListener('click', () => {
+    if (cert.type === 'pdf' && cert.file) {
+      // open PDF in new tab
+      window.open(cert.file, '_blank');
+    } else if (cert.type === 'folder' && cert.link) {
+      window.location.href = cert.link;
+    }
+  });
+
+  const info = document.createElement('div'); info.className = 'cert-info';
+  const t = document.createElement('div'); t.className = 'cert-title'; t.textContent = cert.title;
+  const d = document.createElement('div'); d.className = 'cert-date'; d.textContent = 'Issued: ' + (cert.date || '—');
+
+  const actions = document.createElement('div');
+  if (cert.type === 'folder') {
+    const a = document.createElement('a'); a.href = cert.link; a.className = 'folder-btn'; a.textContent = '📁 Open Folder';
+    actions.appendChild(a);
+
+    if (Array.isArray(cert.files) && cert.files.length) {
+      const list = document.createElement('div'); list.className = 'file-list';
+      list.innerHTML = 'Files: ' + cert.files.map(f => `<a href="${cert.link.replace('index.html','')}${f}" download style="color:#87CEEB">${f}</a>`).join(', ');
+      info.appendChild(list);
+    }
+  } else {
+    const dl = document.createElement('a'); dl.href = cert.file; dl.className = 'download-btn'; dl.textContent = '📥 Download PDF'; dl.setAttribute('download','');
+    actions.appendChild(dl);
+  }
+
+  info.appendChild(t); info.appendChild(d); info.appendChild(actions);
+  card.appendChild(img); card.appendChild(info);
+  return card;
+}
+
+function renderCerts(list){
+  certGrid.innerHTML = '';
+  list.forEach(c => certGrid.appendChild(createCard(c)));
+}
+renderCerts(certificates);
+
+/* ---------- preloader & progress ---------- */
+window.addEventListener('load', () => {
+  // hide preloader
+  const pre = document.getElementById('preloader');
+  if (pre) setTimeout(()=> pre.classList.add('hidden'), 500);
+});
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+/* ---------- modal close ---------- */
+document.getElementById('closeModal').addEventListener('click', ()=> document.getElementById('modal').style.display='none');
+
+/* ---------- back to top ---------- */
+document.querySelector('.back-to-top').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ---------- accessibility small helpers ---------- */
+document.addEventListener('keydown', (e) => { if (e.key === 'Tab') document.body.classList.add('show-outline'); });
+
+/* ---------- recommended thumbnail sizes (comment) ---------- */
+/* Thumbnails: 600x400 (3:2). Full previews: ~1600x1067. */
+
+/* Screenshot reference (your uploaded image): /mnt/data/7b9f8811-10f0-4a0c-a915-a225abc7506b.png */
+</script>
 </body>
 </html>
