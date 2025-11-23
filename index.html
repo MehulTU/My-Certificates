@@ -189,7 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
     particlesJS('particles-js', {
       particles: {
         number: { value: 40, density: { enable: true, value_area: 800 } },
-        color: { value: '#87CEEB' },
+
+        /* ★★★ MULTI-COLOR FLOATING PARTICLES ★★★ */
+        color: { value: ["#87CEEB", "#00FFFF", "#FFD700", "#FF1493", "#7CFC00"] },
+
         shape: { type: 'circle' },
         opacity: { value: 0.45, random: true },
         size: { value: 3.5, random: true },
@@ -204,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+</script>
 
 /* ---------- typed.js ---------- */
 window.addEventListener('load', () => {
@@ -314,3 +318,4 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Tab') document.body
 </script>
 </body>
 </html>
+
