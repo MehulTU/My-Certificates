@@ -45,19 +45,18 @@
     background: linear-gradient(135deg, rgba(26,46,68,0.9), rgba(42,64,96,0.9));
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
   }
-  /* <-- NAME size increased (responsive) as requested -->
-     only this rule changed for the name */
+  /* <-- only this rule changed: NAME size increased (responsive) -->
   h1{
     color: var(--accent);
     font-family: 'Playfair Display', serif;
     font-weight:900;
     margin:0 0 10px 0;
-    font-size: clamp(3.2rem, 6.5vw, 5rem); /* larger and responsive */
+    font-size: clamp(4rem, 7vw, 6.5rem) !important; /* increased and !important to ensure it takes effect */
     line-height:1;
     text-shadow: 0 2px 10px rgba(135,206,235,0.15);
   }
-  /* subtitle slightly smaller than name */
-  .subtitle{ color: var(--muted); font-size:1rem; font-weight:600; }
+  /* subtitle slightly smaller than name (only font-size changed) */
+  .subtitle{ color: var(--muted); font-size: clamp(1.2rem, 2.2vw, 1.6rem) !important; font-weight:600; }
 
   /* cert grid */
   .cert-grid{
@@ -218,9 +217,9 @@ window.addEventListener('load', () => {
 
 /* ---------- Certificates data (preserve original structure) ---------- */
 const certificates = [
-  { title: "Data science with Microsoft certification", date: "2020", type: "folder", link: "cert1/index.html", files: ["cert1a","cert1b","cert1c"], thumbnail: "cert1/cert1a-thumb.png" },
-  { title: "MATLAB", date: "2020", type: "folder", link: "cert2/index.html", files: ["cert2a","cert2b"], thumbnail: "cert2/cert2a-thumb.png" },
-  { title: "Research Paper", date: "2021-2022", type: "folder", link: "cert3/index.html", files: ["cert3a","cert3b","cert3c","cert3d"], thumbnail: "cert3/cert3d-thumb.jpg" },
+  { title: "Data science with Microsoft certification", date: "2020", type: "folder", link: "cert1/index.html", thumbnail: "cert1/cert1a-thumb.png" },
+  { title: "MATLAB", date: "2020", type: "folder", link: "cert2/index.html", thumbnail: "cert2/cert2a-thumb.png" },
+  { title: "Research Paper", date: "2021-2022", type: "folder", link: "cert3/index.html", thumbnail: "cert3/cert3d-thumb.jpg" },
   { title: "EV Battery Pack Sizing", date: "2022", type: "pdf", file: "cert4.pdf", thumbnail: "cert4-thumb.png" },
   { title: "ETG internship(FEA_CFD)", date: "2021", type: "pdf", file: "cert5.pdf", thumbnail: "cert5-thumb.png" },
   { title: "EV- ETG internship (Electric vehicle)", date: "2021", type: "pdf", file: "cert6.pdf", thumbnail: "cert6-thumb.jpg" },
