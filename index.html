@@ -1,443 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mehul Vinayak Patil - Certificates</title>
-  <link rel="icon" href="https://via.placeholder.com/32?text=MP" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mehul Vinayak Patil - Certificates</title>
+<link rel="icon" href="https://via.placeholder.com/32?text=MP" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
-  <!-- minimal Tailwind CDN kept (optional) -->
-  <script src="https://cdn.tailwindcss.com" defer></script>
+<!-- keep your scripts (deferred where appropriate) -->
+<script src="https://cdn.tailwindcss.com" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
 
-  <!-- typed.js and particles deferred for performance -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+<style>
+  /* --- keep the original visual vibe but tidy — minimal changes --- */
+  :root{
+    --bg1: #1a2e44;
+    --bg2: #2a4060;
+    --accent: #87CEEB;
+    --muted: #b3c5e7;
+    --card-bg: rgba(30,42,80,0.9);
+    --radius: 18px;
+    --maxw: 1300px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
 
-  <style>
-    :root{
-      --bg-1: #0f1b2b;
-      --bg-2: #21344a;
-      --accent: #60b8ff;
-      --muted: #b6c6df;
-      --card-bg: rgba(255,255,255,0.03);
-      --glass: rgba(255,255,255,0.04);
-      --radius: 14px;
-      --max-width: 1200px;
-      --h1-size: clamp(2.0rem, 5vw, 3.6rem);
-    }
+  /* container */
+  .container{max-width:var(--maxw);margin:0 auto;padding:28px;position:relative;z-index:1}
 
-    /* Reset & base */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
-      color:#eaf3ff;
-      background: linear-gradient(135deg,var(--bg-1) 0%, var(--bg-2) 100%);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-    }
+  /* header (keeps original vibe) */
+  header{
+    text-align:center;
+    padding:64px 24px;
+    margin-bottom:40px;
+    border-radius:20px;
+    background: linear-gradient(135deg, rgba(26,46,68,0.9), rgba(42,64,96,0.9));
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  }
+  h1{
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-weight:900;
+    margin:0 0 10px 0;
+    font-size:3.6rem; /* reduced from 7em to sane size but still impressive */
+    line-height:1;
+    text-shadow: 0 2px 10px rgba(135,206,235,0.15);
+  }
+  .subtitle{ color: var(--muted); font-size:1.1rem; font-weight:600; }
 
-    /* subtle overlay */
-    body::before{
-      content:"";
-      position:fixed;inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
-      pointer-events:none; z-index:0;
-    }
+  /* cert grid */
+  .cert-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap:28px;
+    margin:36px 0;
+  }
+  .cert-card{
+    background: linear-gradient(180deg, rgba(30,42,80,0.95), rgba(42,64,102,0.95));
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transition: transform .32s ease, box-shadow .32s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .cert-card:hover{ transform:translateY(-12px); box-shadow:0 20px 50px rgba(0,0,0,0.7); }
+  .cert-card img{ width:100%; height:250px; object-fit:cover; display:block; }
 
-    .container{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:28px;
-      position:relative;
-      z-index:1;
-    }
+  .cert-info{ padding:20px; display:flex; flex-direction:column; gap:10px; }
+  .cert-title{ font-size:1.15rem; font-weight:700; color:#cfdff3; text-transform:uppercase; letter-spacing:0.6px; }
+  .cert-date{ color:var(--muted); font-weight:600; }
 
-    /* Header */
-    header{
-      text-align:center;
-      padding:48px 24px;
-      margin-bottom:36px;
-      border-radius:20px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-      position:relative;
-      overflow:hidden;
-    }
-    header .name{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    header h1{
-      margin:0;
-      font-family:'Playfair Display', serif;
-      font-weight:800;
-      color:var(--accent);
-      font-size:var(--h1-size);
-      line-height:1;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.45);
-    }
-    header .subtitle{
-      margin-top:10px;
-      color:var(--muted);
-      font-weight:600;
-      font-size:1.05rem;
-    }
+  .folder-btn, .download-btn{
+    display:inline-block; margin-top:12px; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600;
+    border:1px solid rgba(192,192,192,0.06); background:rgba(255,255,255,0.02); color:#fff;
+  }
+  .folder-btn:hover, .download-btn:hover{ transform:translateY(-3px); border-color:rgba(135,206,235,0.35); }
 
-    /* grid */
-    .cert-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap:22px;
-      margin:28px 0;
-    }
-    .cert-card{
-      background: linear-gradient(180deg, var(--card-bg), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-      transition: transform .32s ease, box-shadow .32s ease;
-      position:relative;
-      border:1px solid rgba(255,255,255,0.03);
-      display:flex;
-      flex-direction:column;
-    }
-    .cert-card:focus-within,
-    .cert-card:hover{ transform: translateY(-10px); box-shadow:0 20px 40px rgba(0,0,0,0.6); }
+  /* ABOUT section — center heading, justified paragraph (like Word) */
+  #about-section{
+    margin-top:48px;
+    padding:32px;
+    border-radius:20px;
+    background: linear-gradient(180deg, rgba(30,42,80,0.95), rgba(42,64,102,0.95));
+    box-shadow:0 15px 40px rgba(0,0,0,0.45);
+    border: 1px solid rgba(192,192,192,0.06);
+    text-align:center; /* centers the H2 and any inline elements */
+  }
+  #about-section h2{
+    color:#cfdff3;
+    font-family:'Playfair Display', serif;
+    font-weight:800;
+    margin:0 0 18px 0;
+    font-size:1.9rem;
+    text-align:center;
+  }
+  /* the justified paragraph block */
+  .about-text{
+    max-width:960px;        /* constrain width so justification looks clean */
+    margin:0 auto;          /* center the block */
+    color:var(--muted);
+    font-size:1.05rem;
+    line-height:1.75;
+    text-align:justify;     /* THIS makes it like MS Word */
+    text-justify:inter-word;
+    hyphens:auto;           /* reduces large gaps on narrow screens */
+  }
+  .about-text a{ color: #87CEEB; text-decoration:underline; }
 
-    .cert-thumb{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      display:block;
-      background:#0b1220;
-    }
-    .cert-info{
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      flex:1;
-    }
-    .cert-title{
-      font-size:1.05rem;
-      font-weight:700;
-      color:#eaf3ff;
-      letter-spacing:0.2px;
-    }
-    .cert-date{ color:var(--muted); font-weight:500; font-size:0.95rem; }
+  /* footer + small stuff */
+  footer{ text-align:center; padding:28px 0; color:var(--muted); margin-top:36px; }
+  #particles-js{ position:fixed; inset:0; z-index:-1; pointer-events:none; }
+  .preloader{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, rgba(11,18,32,0.96), rgba(13,22,36,0.96)); z-index:9999; transition:opacity .35s ease; }
+  .preloader.hidden{ opacity:0; pointer-events:none; visibility:hidden; }
+  .progress-bar{ position:fixed; top:0; left:0; height:5px; width:0; z-index:1000; background:linear-gradient(90deg,#c0c0c0,#d3d3d3); box-shadow:0 0 8px rgba(192,192,192,0.3); transition:width .2s linear; }
+  .back-to-top{ position:fixed; right:20px; bottom:20px; width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg,#1e2a50,#2a4066); color:white; box-shadow:0 5px 15px rgba(0,0,0,0.35); cursor:pointer; }
 
-    .card-actions{
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:600;
-      border:1px solid rgba(255,255,255,0.04);
-      transition:transform .18s ease, box-shadow .18s ease;
-      background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      color:inherit;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn--primary{
-      background: linear-gradient(90deg, rgba(96,184,255,0.12), rgba(96,184,255,0.06));
-      border-color: rgba(96,184,255,0.12);
-    }
-
-    .file-list{ font-size:0.95rem; color:var(--muted); margin-top:6px; }
-    .file-list a{ color:var(--accent); text-decoration:none; }
-    .file-list a:hover{ text-decoration:underline; color: #9fe0ff; }
-
-    /* about */
-    #about-section{
-      margin-top:28px;
-      padding:28px;
-      border-radius:16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow:0 10px 26px rgba(0,0,0,0.45);
-      border:1px solid rgba(255,255,255,0.025);
-    }
-    #about-section h2{ margin:0 0 12px 0; color:#dfefff; font-family:'Playfair Display', serif; font-weight:700; }
-    #about-section p{ margin:0; color:var(--muted); line-height:1.6; }
-
-    /* footer */
-    footer{ text-align:center; color:var(--muted); margin:28px 0 12px; }
-
-    /* preloader */
-    .preloader{
-      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg, rgba(11,18,32,0.96), rgba(13,22,36,0.96)); z-index:9999;
-      transition:opacity .35s ease, visibility .35s ease;
-    }
-    .preloader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
-
-    .progress-bar{
-      position:fixed; top:0; left:0; height:4px; width:0; z-index:1000;
-      background: linear-gradient(90deg, rgba(96,184,255,0.9), rgba(160,210,255,0.7));
-      box-shadow:0 0 8px rgba(96,184,255,0.15);
-      transition: width .2s linear;
-    }
-
-    /* back to top */
-    .back-to-top{
-      position:fixed; bottom:18px; right:18px; z-index:1001;
-      width:44px; height:44px; display:grid; place-items:center; border-radius:50%;
-      background:linear-gradient(180deg,#193248,#163145); color:#e7f8ff; border:1px solid rgba(255,255,255,0.03);
-      box-shadow:0 8px 20px rgba(0,0,0,0.4); cursor:pointer;
-      transition: transform .32s ease;
-    }
-    .back-to-top:hover{ transform: translateY(-6px) rotate(12deg); }
-
-    /* responsive */
-    @media (max-width:768px){
-      .cert-thumb{ height:180px; }
-      header{ padding:28px 16px; }
-      .container{ padding:18px; }
-    }
-
-    /* focus styles for keyboard accessibility */
-    :focus{ outline: 3px solid rgba(96,184,255,0.18); outline-offset:2px; border-radius:8px; }
-  </style>
+  @media (max-width:768px){
+    h1{ font-size:2.6rem; }
+    .cert-card img{ height:180px; }
+    .about-text{ font-size:1rem; line-height:1.6; padding:0 10px; }
+  }
+</style>
 </head>
 <body>
-  <div class="preloader" id="preloader" role="status" aria-live="polite">
-    <div class="text-lg font-semibold" style="color:#a9c9e6">Loading certificates…</div>
-  </div>
+  <!-- preloader -->
+  <div class="preloader" id="preloader"><div style="color:#a9c9e6;font-weight:600">Loading...</div></div>
+  <div class="progress-bar" id="progressBar" style="width:0%"></div>
 
-  <div class="progress-bar" id="progressBar" aria-hidden="true" style="width:0%;"></div>
-
-  <!-- particles container -->
-  <div id="particles-js" style="position:fixed;inset:0;z-index: -1;pointer-events:none;"></div>
+  <!-- particles -->
+  <div id="particles-js"></div>
 
   <header>
-    <div class="name">
-      <h1>Mehul Vinayak Patil</h1>
-    </div>
-    <p class="subtitle">Showcasing Excellence — <span id="typed" aria-hidden="true"></span></p>
+    <h1>Mehul Vinayak Patil</h1>
+    <p class="subtitle">Showcasing Excellence — <span id="typed"></span></p>
   </header>
 
-  <main class="container" id="main">
-    <section class="cert-grid" id="certGrid" aria-live="polite" aria-label="Certificates grid">
-      <!-- JS will populate -->
-    </section>
+  <div class="container">
+    <!-- certificates grid -->
+    <div class="cert-grid" id="certGrid"></div>
 
+    <!-- ABOUT: centered heading, justified paragraph -->
     <section id="about-section" aria-labelledby="about-heading">
       <h2 id="about-heading">About Me</h2>
-      <p>
+      <p class="about-text">
         I am a passionate Aerospace Engineering graduate student with a Mechatronics background and hands-on expertise in CAD design, automation, and electromobility. Proven success in EV prototyping, sensor integration, and ROS-based autonomous systems. Skilled in Siemens NX, MATLAB, Python, and hardware prototyping. Currently advancing German proficiency for seamless team integration.
-        <a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:underline; margin-left:8px">Connect on LinkedIn</a>
+        <a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" rel="noopener">Connect on LinkedIn</a>
       </p>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Mehul Vinayak Patil. All rights reserved.</p>
-    <div style="margin-top:10px;">
-      <a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" rel="noopener" style="color:var(--muted);margin:0 8px;">LinkedIn</a>
-      <a href="https://github.com/mehultu" target="_blank" rel="noopener" style="color:var(--muted);margin:0 8px;">GitHub</a>
-    </div>
-  </footer>
+    <footer>
+      <p>&copy; 2025 Mehul Vinayak Patil. All rights reserved.</p>
+      <p><a href="https://www.linkedin.com/in/mehul-patil-711549219" target="_blank" style="color:#b3c5e7;margin-right:12px">LinkedIn</a><a href="https://github.com/mehultu" target="_blank" style="color:#b3c5e7">GitHub</a></p>
+    </footer>
+  </div>
 
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+  <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-  <script>
-    /* ====== particlesJS init (lighter config) ====== */
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.particlesJS) {
-        particlesJS('particles-js', {
-          particles: {
-            number: { value: 36, density: { enable: true, value_area: 800 } },
-            color: { value: '#60b8ff' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.45, random: true },
-            size: { value: 3, random: true },
-            line_linked: { enable: false },
-            move: { enable: true, speed: 1.2, random: true, out_mode: 'out' }
-          },
-          interactivity: {
-            detect_on: 'canvas',
-            events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } }
-          },
-          retina_detect: true
-        });
-      }
+  <!-- modal lightbox (kept as before) -->
+  <div id="modal" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:2000">
+    <div style="position:relative;max-width:1100px;width:95%;"><img id="modalImg" src="" alt="preview" style="width:100%;height:auto;border-radius:10px"><button id="closeModal" style="position:absolute;right:8px;top:8px;padding:6px 8px;border-radius:6px;background:#222;color:#fff;border:none;cursor:pointer">✕</button></div>
+  </div>
+
+<script>
+/* ---------- particles init (light) ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.particlesJS) {
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 40, density: { enable: true, value_area: 800 } },
+        color: { value: '#87CEEB' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.45, random: true },
+        size: { value: 3.5, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 1.2, random: true }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } }
+      },
+      retina_detect: true
     });
-  </script>
+  }
+});
 
-  <script>
-    /* ====== TypedJS (deferred earlier) ====== */
-    window.addEventListener('load', () => {
-      if (window.Typed) {
-        new Typed('#typed', {
-          strings: ['Aerospace Engineer','Mechatronics Engineer','CAD Designing','Motivation in R&D'],
-          typeSpeed: 50, backSpeed: 35, loop: true, showCursor: true, cursorChar: '|'
-        });
-      }
+/* ---------- typed.js ---------- */
+window.addEventListener('load', () => {
+  if (window.Typed) {
+    new Typed('#typed', {
+      strings: ['Aerospace Engineer', 'Mechatronics Engineer', 'CAD Designing', 'Motivation in R&D'],
+      typeSpeed: 50, backSpeed: 30, loop: true, showCursor: true, cursorChar: '|'
     });
+  }
 
-    /* ====== Certificate data (preserve your original entries) ====== */
-    const certificates = [
-      { title: "Data science with Microsoft certification", date: "2020", type: "folder", link: "cert1/index.html", files: ["cert1a","cert1b","cert1c"], thumbnail: "cert1/cert1a-thumb.png" },
-      { title: "MATLAB", date: "2020", type: "folder", link: "cert2/index.html", files: ["cert2a","cert2b"], thumbnail: "cert2/cert2a-thumb.png" },
-      { title: "Research Paper", date: "2021-2022", type: "folder", link: "cert3/index.html", files: ["cert3a","cert3b","cert3c","cert3d"], thumbnail: "cert3/cert3d-thumb.jpg" },
-      { title: "EV Battery Pack Sizing", date: "2022", type: "pdf", file: "cert4.pdf", thumbnail: "cert4-thumb.png" },
-      { title: "ETG internship(FEA_CFD)", date: "2021", type: "pdf", file: "cert5.pdf", thumbnail: "cert5-thumb.png" },
-      { title: "EV- ETG internship (Electric vehicle)", date: "2021", type: "pdf", file: "cert6.pdf", thumbnail: "cert6-thumb.jpg" },
-      { title: "Global collaboration Car design_Certificate 2023 ADP", date: "2023", type: "pdf", file: "cert7.pdf", thumbnail: "cert7-thumb.jpg" },
-      { title: "Management and campus leader", date: "2021-2022", type: "pdf", file: "cert8.pdf", thumbnail: "cert8-thumb.jpg" },
-      { title: "Python and machine learning internship", date: "2020", type: "pdf", file: "cert9.pdf", thumbnail: "cert9-thumb.jpg" },
-      { title: "Python Programming (MTA) – Microsoft Certified", date: "2020", type: "pdf", file: "cert10.pdf", thumbnail: "cert10-thumb.png" },
-      { title: "Shape UI_ Python (workshop)", date: "2020", type: "pdf", file: "cert11.pdf", thumbnail: "cert11-thumb.jpg" },
-      { title: "Tata bearing", date: "2020", type: "pdf", file: "cert12.pdf", thumbnail: "cert12-thumb.jpg" },
-      { title: "Environmental quize certificate", date: "2020", type: "pdf", file: "cert13.pdf", thumbnail: "cert13-thumb.jpg" }
-    ];
+  // hide preloader quickly
+  const pre = document.getElementById('preloader');
+  if (pre) setTimeout(()=>pre.classList.add('hidden'), 500);
+});
 
-    /* ====== render grid (kept structure & actions intact) ====== */
-    const grid = document.getElementById('certGrid');
+/* ---------- Certificates data (preserve original structure) ---------- */
+const certificates = [
+  { title: "Data science with Microsoft certification", date: "2020", type: "folder", link: "cert1/index.html", files: ["cert1a","cert1b","cert1c"], thumbnail: "cert1/cert1a-thumb.png" },
+  { title: "MATLAB", date: "2020", type: "folder", link: "cert2/index.html", files: ["cert2a","cert2b"], thumbnail: "cert2/cert2a-thumb.png" },
+  { title: "Research Paper", date: "2021-2022", type: "folder", link: "cert3/index.html", files: ["cert3a","cert3b","cert3c","cert3d"], thumbnail: "cert3/cert3d-thumb.jpg" },
+  { title: "EV Battery Pack Sizing", date: "2022", type: "pdf", file: "cert4.pdf", thumbnail: "cert4-thumb.png" },
+  { title: "ETG internship(FEA_CFD)", date: "2021", type: "pdf", file: "cert5.pdf", thumbnail: "cert5-thumb.png" },
+  { title: "EV- ETG internship (Electric vehicle)", date: "2021", type: "pdf", file: "cert6.pdf", thumbnail: "cert6-thumb.jpg" },
+  { title: "Global collaboration Car design_Certificate 2023 ADP", date: "2023", type: "pdf", file: "cert7.pdf", thumbnail: "cert7-thumb.jpg" },
+  { title: "Management and campus leader", date: "2021-2022", type: "pdf", file: "cert8.pdf", thumbnail: "cert8-thumb.jpg" },
+  { title: "Python and machine learning internship", date: "2020", type: "pdf", file: "cert9.pdf", thumbnail: "cert9-thumb.jpg" },
+  { title: "Python Programming (MTA) – Microsoft Certified", date: "2020", type: "pdf", file: "cert10.pdf", thumbnail: "cert10-thumb.png" },
+  { title: "Shape UI_ Python (workshop)", date: "2020", type: "pdf", file: "cert11.pdf", thumbnail: "cert11-thumb.jpg" },
+  { title: "Tata bearing", date: "2020", type: "pdf", file: "cert12.pdf", thumbnail: "cert12-thumb.jpg" },
+  { title: "Environmental quize certificate", date: "2020", type: "pdf", file: "cert13.pdf", thumbnail: "cert13-thumb.jpg" }
+];
 
-    function createCard(cert){
-      const card = document.createElement('article');
-      card.className = 'cert-card';
-      card.tabIndex = 0;
+/* ---------- render grid (keeps your actions) ---------- */
+const certGrid = document.getElementById('certGrid');
 
-      const img = document.createElement('img');
-      img.className = 'cert-thumb';
-      img.alt = cert.title + ' preview';
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.src = cert.thumbnail || 'https://via.placeholder.com/800x600?text=Preview';
-      img.onerror = () => { img.src = 'https://via.placeholder.com/800x600?text=Preview'; };
+function createCard(cert){
+  const card = document.createElement('div'); card.className = 'cert-card'; card.tabIndex = 0;
 
-      // click to open full image/pdf in new tab (if file) or folder link
-      img.addEventListener('click', () => {
-        if (cert.type === 'pdf' && cert.file) {
-          window.open(cert.file, '_blank');
-        } else if (cert.type === 'folder' && cert.link) {
-          window.location.href = cert.link;
-        }
-      });
+  const img = document.createElement('img'); img.alt = cert.title + ' preview'; img.loading = 'lazy';
+  img.src = cert.thumbnail || 'https://via.placeholder.com/800x600?text=Preview';
+  img.onerror = () => img.src = 'https://via.placeholder.com/800x600?text=Preview';
 
-      const info = document.createElement('div');
-      info.className = 'cert-info';
-
-      const t = document.createElement('div');
-      t.className = 'cert-title';
-      t.textContent = cert.title;
-
-      const d = document.createElement('div');
-      d.className = 'cert-date';
-      d.textContent = 'Issued: ' + (cert.date || '—');
-
-      const actions = document.createElement('div');
-      actions.className = 'card-actions';
-
-      if (cert.type === 'folder') {
-        const a = document.createElement('a');
-        a.className = 'btn';
-        a.href = cert.link;
-        a.textContent = '📁 Open Folder';
-        a.setAttribute('aria-label', `Open folder for ${cert.title}`);
-        actions.appendChild(a);
-
-        if (Array.isArray(cert.files) && cert.files.length) {
-          const list = document.createElement('div');
-          list.className = 'file-list';
-          list.innerHTML = 'Files: ' + cert.files.map(f => `<a href="${cert.link.replace('index.html','')}${f}" download>${f}</a>`).join(', ');
-          info.appendChild(list);
-        }
-      } else if (cert.type === 'pdf') {
-        const dl = document.createElement('a');
-        dl.className = 'btn btn--primary';
-        dl.href = cert.file;
-        dl.textContent = '📥 Download PDF';
-        dl.setAttribute('download','');
-        dl.setAttribute('aria-label', `Download ${cert.title} PDF`);
-        actions.appendChild(dl);
-      }
-
-      info.appendChild(t);
-      info.appendChild(d);
-      info.appendChild(actions);
-
-      card.appendChild(img);
-      card.appendChild(info);
-
-      return card;
+  img.addEventListener('click', () => {
+    if (cert.type === 'pdf' && cert.file) {
+      // open PDF in new tab
+      window.open(cert.file, '_blank');
+    } else if (cert.type === 'folder' && cert.link) {
+      window.location.href = cert.link;
     }
+  });
 
-    function renderCertificates(list){
-      grid.innerHTML = '';
-      if (!list || !list.length) {
-        grid.innerHTML = '<div style="padding:28px;color:#bfd9f2">No certificates found.</div>';
-        return;
-      }
-      const frag = document.createDocumentFragment();
-      list.forEach(c => frag.appendChild(createCard(c)));
-      grid.appendChild(frag);
+  const info = document.createElement('div'); info.className = 'cert-info';
+  const t = document.createElement('div'); t.className = 'cert-title'; t.textContent = cert.title;
+  const d = document.createElement('div'); d.className = 'cert-date'; d.textContent = 'Issued: ' + (cert.date || '—');
+
+  const actions = document.createElement('div');
+  if (cert.type === 'folder') {
+    const a = document.createElement('a'); a.href = cert.link; a.className = 'folder-btn'; a.textContent = '📁 Open Folder';
+    actions.appendChild(a);
+
+    if (Array.isArray(cert.files) && cert.files.length) {
+      const list = document.createElement('div'); list.className = 'file-list';
+      list.innerHTML = 'Files: ' + cert.files.map(f => `<a href="${cert.link.replace('index.html','')}${f}" download style="color:#87CEEB">${f}</a>`).join(', ');
+      info.appendChild(list);
     }
+  } else {
+    const dl = document.createElement('a'); dl.href = cert.file; dl.className = 'download-btn'; dl.textContent = '📥 Download PDF'; dl.setAttribute('download','');
+    actions.appendChild(dl);
+  }
 
-    // initial render
-    renderCertificates(certificates);
+  info.appendChild(t); info.appendChild(d); info.appendChild(actions);
+  card.appendChild(img); card.appendChild(info);
+  return card;
+}
 
-    /* ====== preloader and progress bar ====== */
-    const preloaderEl = document.getElementById('preloader');
-    const progressBar = document.getElementById('progressBar');
+function renderCerts(list){
+  certGrid.innerHTML = '';
+  list.forEach(c => certGrid.appendChild(createCard(c)));
+}
+renderCerts(certificates);
 
-    // hide preloader after content loaded; keep small timeout to show smoothness
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        preloaderEl.classList.add('hidden');
-      }, 600);
-    });
+/* ---------- preloader & progress ---------- */
+window.addEventListener('load', () => {
+  // hide preloader
+  const pre = document.getElementById('preloader');
+  if (pre) setTimeout(()=> pre.classList.add('hidden'), 500);
+});
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
 
-    // progress bar on scroll
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = pct + '%';
-    });
+/* ---------- modal close ---------- */
+document.getElementById('closeModal').addEventListener('click', ()=> document.getElementById('modal').style.display='none');
 
-    /* ====== back to top ====== */
-    const backBtn = document.getElementById('backToTop');
-    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+/* ---------- back to top ---------- */
+document.querySelector('.back-to-top').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-    /* ====== keyboard accessibility: focus outlines when tabbing ====== */
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') document.body.classList.add('show-focus');
-    });
+/* ---------- accessibility small helpers ---------- */
+document.addEventListener('keydown', (e) => { if (e.key === 'Tab') document.body.classList.add('show-outline'); });
 
-    /* ====== optional: light improvement - keyboard open of card with Enter ====== */
-    grid.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Enter') {
-        const card = ev.target.closest('.cert-card');
-        if (card) {
-          const img = card.querySelector('.cert-thumb');
-          if (img) img.click();
-        }
-      }
-    });
+/* ---------- recommended thumbnail sizes (comment) ---------- */
+/* Thumbnails: 600x400 (3:2). Full previews: ~1600x1067. */
 
-    /* ====== NOTE: recommended thumbnail sizes ======
-       - Thumbnails: 600 x 400 px (3:2) — good balance of quality and size.
-       - Full previews: ~1600 x 1067 px for modal / large view or PDF full pages.
-       Keep consistent filenames: cert1-thumb.jpg / cert1.pdf or cert1-full.jpg
-    =================================================*/
-  </script>
+/* Screenshot reference (your uploaded image): /mnt/data/7b9f8811-10f0-4a0c-a915-a225abc7506b.png */
+</script>
 </body>
 </html>
